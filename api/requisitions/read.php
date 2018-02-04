@@ -6,6 +6,7 @@
     require '../config/database.php';
 
     $pdo = Database::connect();
+
     $query = '
     SELECT r.id, r.cart_id, b.name as branch, s.name as status, rs.created_at as completed, c.name as client, pt.name as payment_type, d.name as delivery, r.created_at
     FROM requisitions r, statuses s, requisition_status rs, clients c, payment_types pt, deliveries d, branches b, tills t
@@ -14,38 +15,32 @@
           and t.id IN(
             SELECT t.id
             FROM tills t
-            WHERE t.branch_id = 2);';
+            WHERE t.branch_id = 2)
+    ORDER BY rs.created_at';
     
     $statement = $pdo->query($query);
     $num = $statement->rowCount();
-    
-    $data = array();
-    if($num > 0){
-        $data['requisitions'] = array();
+    $requisitions = array();
 
+    if($num > 0){
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
             extract($row);
 
             $requisition = array(
-                'id' => $id,
-                'cart_id' => $cart_id,
-                'branch' => $branch,
-                'status' => $status,
-                'completed' => $completed,
-                'client' => $client,
-                'payment_type' => $payment_type,
-                'delivery' => $delivery,
-                'created_at' => $created_at
+                "id" => $id,
+                "cart_id" => $cart_id,
+                "branch" => $branch,
+                "status" => $status,
+                "completed" => $completed,
+                "client" => $client,
+                "payment_type" => $payment_type,
+                "delivery" => $delivery,
+                "created_at" => $created_at
             );
 
-            array_push($data['requisitions'], $requisition);
+            array_push($requisitions, $requisition);
         }
     }
-    else{
-        $data["errors"] = array();
-        array_push($data["errors"], "No hay datos que concuerden con la búsqueda-");
-    }
-
-    var_dump(json_encode($data, JSON_FORCE_OBJECT));
-    die();
+    
+    echo json_encode($requisitions);
 ?>
