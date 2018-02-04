@@ -20,7 +20,7 @@ export class RequisitionsComponent implements OnInit {
 
 interface Requisition{
   id:number,
-  cart_id:number,
+  total:number,
   branch:string,
   status:string,
   completed:string,

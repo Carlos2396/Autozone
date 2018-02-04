@@ -1,33 +1,37 @@
 <div class="row">
-  <div class="col-md-12">
-      <div class="card">
-          <div class="card-header" data-background-color="purple">
-              <h4 class="title">Ventas</h4>
-              <p class="category">Solicitudes completadas en la sucursal en línea.</p>
-          </div>
-          <div class="card-content table-responsive">
-              <table class="table">
-                  <thead class="text-primary">
-                      <th>#</th>
-                      <th>Cliente</th>
-                      <th>Sucursal</th>
-                      <th>Estado</th>
-                      <th>Tipo de pago</th>
-                      <th>Entrega</th>
-                      <th>Fecha</th>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let requisition of requisitions">
-                          <td>{{requisition.id}}</td>
-                          <td>{{requisition.client}}</td>
-                          <td>{{requisition.branch}}</td>
-                          <td>{{requisition.status}}</td>
-                          <td>{{requisition.payment_type}}</td>
-                          <td>{{requisition.delivery}}</td>
-                          <td>{{requisition.completed}}</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="purple">
+                <h4 class="title">Ventas</h4>
+                <p class="category">Solicitudes completadas en la sucursal en línea.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table" *ngIf="requisitions.length">
+                    <thead class="text-primary">
+                        <th>#</th>
+                        <th>Cliente</th>
+                        <th>Sucursal</th>
+                        <th>Estado</th>
+                        <th>Tipo de pago</th>
+                        <th>Entrega</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let requisition of requisitions">
+                            <td>{{requisition.id}}</td>
+                            <td>{{requisition.client}}</td>
+                            <td>{{requisition.branch}}</td>
+                            <td>{{requisition.status}}</td>
+                            <td>{{requisition.payment_type}}</td>
+                            <td>{{requisition.delivery}}</td>
+                            <td>{{requisition.completed}}</td>
+                            <td>{{requisition.total | currency}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4 class="text-center" *ngIf="!requisitions.length">No se encontraron datos.</h4>
+        </div>
+    </div>
+</div>

@@ -7,16 +7,7 @@
 
     $pdo = Database::connect();
 
-    $query = '
-    SELECT r.id, r.cart_id, b.name as branch, s.name as status, rs.created_at as completed, c.name as client, pt.name as payment_type, d.name as delivery, r.created_at
-    FROM requisitions r, statuses s, requisition_status rs, clients c, payment_types pt, deliveries d, branches b, tills t
-    WHERE s.id = rs.status_id and r.id = rs.requisition_id and s.name = "Entregado" and t.branch_id = b.id
-          and c.id = r.client_id and pt.id = r.payment_type_id and d.id = r.delivery_id and r.till_id = t.id
-          and t.id IN(
-            SELECT t.id
-            FROM tills t
-            WHERE t.branch_id = 2)
-    ORDER BY rs.created_at';
+    $query = 'call getCompletedRequisitions(2);';
     
     $statement = $pdo->query($query);
     $num = $statement->rowCount();
@@ -28,7 +19,7 @@
 
             $requisition = array(
                 "id" => $id,
-                "cart_id" => $cart_id,
+                "total" => $total,
                 "branch" => $branch,
                 "status" => $status,
                 "completed" => $completed,
