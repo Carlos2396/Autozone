@@ -13,4 +13,8 @@ export class DataService {
     return this.http.get('http://localhost/api/requisitions/read.php').map(res => res.json()); 
   }
 
+  getProducts(){
+    return this.http.get('http://localhost/api/products/read.php').map(res => res.json());
+  }
+
 }

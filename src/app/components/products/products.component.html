@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-header" data-background-color="purple">
+              <h4 class="title">Productos</h4>
+              <p class="category">Todos los productos disponibles en línea.</p>
+          </div>
+          <div class="card-content table-responsive">
+              <table class="table">
+                  <thead class="text-primary">
+                      <th>#</th>
+                      <th># secundario</th>
+                      <th>Nombre</th>
+                      <th>Descripción</th>
+                      <th>Marca</th>
+                      <th>Categoría</th>
+                      <th>Cantidad</th>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let product of products">
+                          <td>{{product.id}}</td>
+                          <td>{{product.secondary_id}}</td>
+                          <td>{{product.name}}</td>
+                          <td>{{product.description}}</td>
+                          <td>{{product.brand}}</td>
+                          <td>{{product.category}}</td>
+                          <td>{{product.quantity}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
