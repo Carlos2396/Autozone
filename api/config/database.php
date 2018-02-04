@@ -1,5 +1,6 @@
 <?php
 	class Database {
+		
 		private static $dbName 			= 'autozone' ; 
 		private static $dbHost 			= 'localhost';
 		private static $dbUsername 		= 'admin';
