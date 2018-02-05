@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.ds.getProducts().subscribe((products)=>{
       this.products = products;
-    })
+    });
   }
 }
 
@@ -25,5 +25,6 @@ interface Product{
   description:string,
   brand:string,
   category:string,
-  quantity:number
+  quantity:number,
+  price: number
 }

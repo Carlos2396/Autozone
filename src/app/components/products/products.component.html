@@ -15,6 +15,7 @@
                       <th>Marca</th>
                       <th>Categoría</th>
                       <th>Cantidad</th>
+                      <th>Precio</th>
                   </thead>
                   <tbody>
                       <tr *ngFor="let product of products">
@@ -25,6 +26,7 @@
                           <td>{{product.brand}}</td>
                           <td>{{product.category}}</td>
                           <td>{{product.quantity}}</td>
+                          <td>{{product.price}}</td>
                       </tr>
                   </tbody>
               </table>
