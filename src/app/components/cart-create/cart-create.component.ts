@@ -114,13 +114,21 @@ export class CartCreateComponent implements OnInit {
 
   makeSale(){
     if(this.validate()){
-      //make post
-
-      //if(valid)
-      window.open('/compras', '_self');
-      //else
-      /*show message*/
+      this.ds.postRequisition(this.client, this.selected).subscribe((data) => {
+        if(data.errors.length > 0){ // si falla la transacción
+          this.message = "";
+          for(let error of data.errors){
+            this.message += error;
+          }
+          return false;
+        }
+        else{ // si funciona la transacción
+          window.open('compras', '_self');
+        }
+      });
     }
+    
+    return false;
   }
 }
 
