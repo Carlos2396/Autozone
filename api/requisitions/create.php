@@ -36,42 +36,73 @@
     }
 
     if(sizeof($data["errors"]) == 0){
+        $correct = true;
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->beginTransaction();
         //Crear cliente
         $sql = "INSERT INTO clients (name, birth, email, phone, password) VALUES (?, '1985-11-9', 'test@test.com', '2221548621','secret');";
         $q = $pdo->prepare($sql);
-        $q->execute(array($client_name));
+        $result = $q->execute(array($client_name));
+        if(!$result){
+            $correct = false;
+            array_push( $data["errors"], "Datos inválidos en creación de cliente");
+        }
         //Obtener id del cliente recien insertado
         $client_id = $pdo->lastInsertId();
         //Crear carrito
         $sql = "INSERT INTO carts (client_id) VALUES (?);";
         $q = $pdo->prepare($sql);
-        $q->execute(array($client_id));
+        $result = $q->execute(array($client_id));
+        if(!$result){
+            $correct = false;
+            array_push( $data["errors"], "Datos inválidos en creación de carrito");
+        }
         //Obtener id del carrito recien insertado
         $cart_id = $pdo->lastInsertId();
         //Insertar productos
-        for($index = 0; $index < sizeof($cart); $index++){
+        foreach($cart as $selection){
             $sql = "INSERT INTO cart_product(product_id, cart_id, quantity) VALUES (?, ?, ?);";
             $q = $pdo->prepare($sql);
-            $q->execute(array($cart[$index]->product->id, $cart_id, $cart[$index]->quantity));
+            $result = $q->execute(array($selection->product->id, $cart_id, $selection->quantity));
+            if(!$result){
+                $correct = false;
+                array_push( $data["errors"], "Datos inválidos al agregar productos a carrito");
+            }
         }
         //Crear requisicion
         $sql = "INSERT INTO requisitions(created_at, cart_id, client_id, delivery_id, payment_type_id, till_id) VALUES (now(), ?, ?, 1, 1, 3);";
         $q = $pdo->prepare($sql);
-        $q->execute(array($cart_id, $client_id));
+        $result = $q->execute(array($cart_id, $client_id));
+        if(!$result){
+            $correct = false;
+            array_push( $data["errors"], "Datos inválidos en creación de venta");
+        }
         //Obtener id de la requisicion recien insertada
         $requisition_id = $pdo->lastInsertId();
         //Actualizar estado de requisición
-        $sql = "INSERT INTO requisition_status(requisition_id, status_id, created_at) VALUES (?, 1, now());";
+        $sql = "INSERT INTO requisition_status(requisition_id, status_id, created_at) VALUES (?, 4, now());";
         $q = $pdo->prepare($sql);
-        $q->execute(array($requisition_id));
+        $result = $q->execute(array($requisition_id));
+        if(!$result){
+            array_push( $data["errors"], "Datos inválidos en estado de requisición");
+            $correct = false;
+        }
         //Disminuir stock
-        for($index = 0; $index < sizeof(cart); $index++){
-            $newStock = $cart[$index]->product->quantity - $cart[$index]->quantity;
+        foreach($cart as $selection){
+            $newStock = $selection->product->quantity - $selection->quantity;
             $sql = "UPDATE branch_product SET quantity = ? WHERE branch_id = 2 AND product_id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($newStock, $cart[$index]->product->id));
+            $result = $q->execute(array($newStock, $selection->product->id));
+            if(!$result){
+                $correct = false;
+            }
+        }
+        if($correct){
+            $pdo->commit();
+        }
+        else{
+            $pdo->rollBack();
         }
         Database::disconnect();
     }
