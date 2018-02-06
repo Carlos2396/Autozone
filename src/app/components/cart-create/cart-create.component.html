@@ -50,14 +50,14 @@
                   <th></th>
               </thead>
               <tbody *ngIf="selected.length > 0">
-                  <tr *ngFor="let sel of selected; let i=index">
+                  <tr *ngFor="let sel of selected">
                       <td>{{sel.product.id}}</td>
                       <td>{{sel.product.secondary_id}}</td>
                       <td>{{sel.product.name}}</td>
                       <td>{{sel.product.brand}}</td>
                       <td>{{sel.product.price | currency}}</td>
                       <td><input class="form-control" style="width:80px;" type="number" (change)="validateQuantity(sel)" [(ngModel)]="sel.quantity" value="{{sel.quantity}}"></td>
-                      <td><button class="btn btn-danger" (click)="deleteProduct(i)"><i class="material-icons">delete</i></button></td>
+                      <td><button class="btn btn-danger" (click)="deleteProduct(sel.product)"><i class="material-icons">delete</i></button></td>
                     </tr>
               </tbody>
           </table>

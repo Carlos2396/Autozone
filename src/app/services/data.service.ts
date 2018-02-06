@@ -1,3 +1,7 @@
+/**
+ * Servicio que se encarga de realizar las peticiones al backend.
+ */
+
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -5,22 +9,24 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
   public headers:Headers;
+  public url:string;
 
-  constructor(public http:Http) { 
+  constructor(public http:Http) {
+    this.url = 'http://localhost/'; // url del servidor donde se encuentra la api
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
   }
 
   getRequisitions(){
-    return this.http.get('http://localhost/api/requisitions/read.php').map(res => res.json()); 
+    return this.http.get(this.url + 'api/requisitions/read.php').map(res => res.json()); 
   }
 
   getProducts(){
-    return this.http.get('http://localhost/api/products/read.php').map(res => res.json());
+    return this.http.get(this.url + 'api/products/read.php').map(res => res.json());
   }
 
   getProductQuantity(product_id){
-    return this.http.get('http://localhost/api/products/read_quantity.php?product_id=' + product_id).map(res => res.json());
+    return this.http.get(this.url + 'api/products/read_quantity.php?product_id=' + product_id).map(res => res.json());
   }
 
   postRequisition(client:string, cart:Selected[]){
@@ -28,7 +34,7 @@ export class DataService {
     data = {client: client, cart: cart};
 
     return this.http.post(
-      'http://localhost/api/requisitions/create.php',
+      this.url + 'api/requisitions/create.php',
       JSON.stringify(data),
     {
       method: 'POST',

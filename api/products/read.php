@@ -1,8 +1,15 @@
 <?php
-    // required headers
+    /*
+        Este archivo se encarga de obtener el inventario de productos de una sucursal.
+
+        Retorna un json todos los productos de una sucursal.
+    */
+
+    // headers necesarios para recibir peticiones externas
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
 
+    // Requerimos la clase Database
     require '../config/database.php';
 
     $pdo = Database::connect();

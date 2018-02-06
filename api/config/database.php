@@ -1,6 +1,10 @@
 <?php
+	/*
+		Clase que se encarga de realizar una conexión PDO a la base datos.
+		Contiene las variables necesarias para la conexion.
+	*/
 	class Database {
-		
+		// Información necesaria para conectarse a la base de datos
 		private static $dbName 			= 'autozone' ; 
 		private static $dbHost 			= 'localhost';
 		private static $dbUsername 		= 'admin';

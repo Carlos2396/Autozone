@@ -1,14 +1,23 @@
 <?php
-    // required headers
+    /*
+        Este archivo se encarga de obtener la cantidad registrada de un producto en usa sucursal.
+
+        Recibe un id de producto a traves de la url.
+        Retorna un json con la cantidad del producto.
+    */
+
+    // headers necesarios para recibir peticiones externas
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
 
+    // Requerimos la clase Database
     require '../config/database.php';
 
+    // Inicializamos arreglo para guardar la respuesta
     $data = array();
     $data["errors"] = array();
     
-    if(!empty($_GET['product_id'])){
+    if(!empty($_GET['product_id'])){ // si la url incluye un id de producto
         $product_id = (int)$_REQUEST['product_id'];
         $valid = true;
 
@@ -20,9 +29,9 @@
         if($valid){
             $pdo = Database::connect();
             $query ='
-                SELECT bp.quantity
-                FROM products p,branches b, branch_product bp
-                WHERE b.id = 2 and p.id = ? and bp.product_id = b.id and bp.branch_id = b.id';
+                SELECT bp.quantity 
+                FROM branch_product bp 
+                WHERE bp.branch_id = 2 and bp.product_id = ?;';
             
             $statement = $pdo->prepare($query);
             $statement->execute(array($product_id));

@@ -1,13 +1,20 @@
 <?php
-    // required headers
+    /*
+        Este archivo se encarga de obtener las ventas de una sucursal.
+
+        Retorna un json todas las ventas de una sucursal.
+    */
+
+    // headers necesarios para recibir peticiones externas
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
 
+    // Requerimos la clase Database
     require '../config/database.php';
 
-    $pdo = Database::connect();
+    $pdo = Database::connect(); // inicializamos conexion PDO
 
-    $query = 'call getCompletedRequisitions(2);';
+    $query = 'call getCompletedRequisitions(2);'; // realizamos la query, ejecuta un stored procedure de la base
     
     $statement = $pdo->query($query);
     $num = $statement->rowCount();

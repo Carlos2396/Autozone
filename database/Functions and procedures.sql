@@ -66,7 +66,7 @@ DELIMITER $$
     DECLARE total FLOAT(7,2);
     SET total = 0;
 
-    SELECT sum((getValue(p.id, 1, NOW()) * cp.quantity))
+    SELECT sum((getValue(p.id, 2, NOW()) * cp.quantity))
     INTO total
     FROM products p, carts c, cart_product cp
     WHERE c.id = cart_id and cp.cart_id = c.id and p.id = cp.product_id;
