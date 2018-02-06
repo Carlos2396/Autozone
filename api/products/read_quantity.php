@@ -28,22 +28,23 @@
 
         if($valid){
             $pdo = Database::connect();
-            $query ='
-                SELECT bp.quantity 
-                FROM branch_product bp 
-                WHERE bp.branch_id = 2 and bp.product_id = ?;';
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-            $statement = $pdo->prepare($query);
-            $statement->execute(array($product_id));
-            $num = $statement->rowCount();
+            try{
+                $sql ="SELECT bp.quantity FROM branch_product bp WHERE bp.branch_id = 2 and bp.product_id = ?;";
+                $q = $pdo->prepare($sql);
+                $result = $q->execute(array($product_id));
 
-            if($num){
-                $row = $statement->fetch(PDO::FETCH_ASSOC);
-                extract($row);
-                $data["quantity"] = $quantity;
-            }
-            else{
-                array_push($data["errors"], "Producto no encontrado.");
+                if($result){
+                    $row = $q->fetch(PDO::FETCH_ASSOC);
+                    extract($row);
+                    $data["quantity"] = $quantity;
+                }
+                else{
+                    array_push($data["errors"], "Producto no encontrado.");
+                }
+            }catch(PDOException $e){
+                array_push( $data["errors"], $e->getMessage());
             }
         }
     }

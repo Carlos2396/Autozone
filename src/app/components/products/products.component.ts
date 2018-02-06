@@ -11,6 +11,7 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  message:string;
   products:Product[]; // todos los productos de la sucursal
 
   constructor(private ds:DataService) { } // se inyecta el servicio para realizar peticiones al backend
@@ -18,8 +19,13 @@ export class ProductsComponent implements OnInit {
   // Método que inicializa las variables
   ngOnInit() {
     // Peticion GET que obtiene todos los productos de una sucursal
-    this.ds.getProducts().subscribe((products)=>{
-      this.products = products;
+    this.ds.getProducts().subscribe((data)=>{
+      this.products = data.products;
+
+      this.message = "";
+      for (let error of data.errors) {
+        this.message += error;
+      }
     });
   }
 }

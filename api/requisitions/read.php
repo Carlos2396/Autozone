@@ -12,33 +12,42 @@
     // Requerimos la clase Database
     require '../config/database.php';
 
+    $data = array();
+    $data["errors"] = array();
+    $data["requisitions"] = array();
+
     $pdo = Database::connect(); // inicializamos conexion PDO
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = 'call getCompletedRequisitions(2);'; // realizamos la query, ejecuta un stored procedure de la base
-    
-    $statement = $pdo->query($query);
-    $num = $statement->rowCount();
-    $requisitions = array();
+    try{
+        $sql = 'call getCompletedRequisitions(2);'; // realizamos la query, ejecuta un stored procedure de la base
+        $result = $pdo->query($sql);
+        
+        if($result && $result->rowCount() > 0){
+            while($row = $result->fetch(PDO::FETCH_ASSOC)){
+                extract($row);
 
-    if($num > 0){
-        while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-            extract($row);
+                $requisition = array(
+                    "id" => $id,
+                    "total" => $total,
+                    "branch" => $branch,
+                    "status" => $status,
+                    "completed" => $completed,
+                    "client" => $client,
+                    "payment_type" => $payment_type,
+                    "delivery" => $delivery,
+                    "created_at" => $created_at
+                );
 
-            $requisition = array(
-                "id" => $id,
-                "total" => $total,
-                "branch" => $branch,
-                "status" => $status,
-                "completed" => $completed,
-                "client" => $client,
-                "payment_type" => $payment_type,
-                "delivery" => $delivery,
-                "created_at" => $created_at
-            );
-
-            array_push($requisitions, $requisition);
+                array_push($data["requisitions"], $requisition);
+            }
         }
+        else{
+            array_push($data["errors"], "No hay ventas registradas.");
+        }
+    }catch(PDOException $e){
+        array_push($data["errors"], $e->getMessage());
     }
     
-    echo json_encode($requisitions);
+    echo json_encode($data);
 ?>

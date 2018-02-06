@@ -30,11 +30,14 @@ export class CartCreateComponent implements OnInit {
   // Método que inicializa todas las variables
   ngOnInit() {
     // Peticion GET que obtiene todos los productos de una sucursal
-    this.ds.getProducts().subscribe((products) => {
-      this.products = products;
+    this.ds.getProducts().subscribe((data) => {
+      this.message = "";
+      for (let error of data.errors) {
+        this.message += error;
+      }
+      this.products = data.products;
     });
     this.selected = [];
-    this.message = null;
     this.input = "";
     this.total = 0;
     this.client = "";
@@ -119,6 +122,7 @@ export class CartCreateComponent implements OnInit {
 
   // Valida que la cantidad del producto sea mayor a 0 y menor o igual al inventario en ese momento.
   validateQuantity(sel) {
+    sel.quantity = Math.floor(sel.quantity);
     if (sel.quantity <= 0) {
       sel.quantity = 1;
     }

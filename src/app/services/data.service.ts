@@ -12,7 +12,7 @@ export class DataService {
   public url:string;
 
   constructor(public http:Http) {
-    this.url = 'http://localhost/'; // url del servidor donde se encuentra la api
+    this.url = 'http://10.50.117.22/'; // url del servidor donde se encuentra la api
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
   }
@@ -34,7 +34,7 @@ export class DataService {
     data = {client: client, cart: cart};
 
     return this.http.post(
-      this.url + 'api/requisitions/create.php',
+      this.url + 'api/requisitions/create-req.php',
       JSON.stringify(data),
     {
       method: 'POST',
