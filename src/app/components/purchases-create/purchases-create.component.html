@@ -51,7 +51,7 @@
           <h4 class="text-center" *ngIf="selected.length == 0"><br>Aún no has seleccionado productos.</h4>
           <h4 *ngIf="selected.length > 0">Costo total: {{total | currency}}</h4>
           <div class="pull-right">
-            <button class="btn btn-success" (click)="makePurchase()" *ngIf="selected.length == 0">Comprar</button>
+            <button class="btn btn-success" (click)="makePurchase()">Comprar</button>
         </div>
       </div>
     </div>

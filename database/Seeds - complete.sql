@@ -361,8 +361,6 @@ INSERT INTO product_provider_price (product_id, provider_id, price_id) VALUES (2
 INSERT INTO purchases (quantity, branch_id, product_id, provider_id, price_id) VALUES (5, 1, 1, 1, 31);
 INSERT INTO purchases (quantity, branch_id, product_id, provider_id, price_id) VALUES (12, 1, 5, 3, 45);
 
-INSERT INTO clients (name, birth, email, phone, password) VALUES ('Sucursal fisica', '1952-10-20', 'endy@gmail.com', '2295638417','secret');
-INSERT INTO clients (name, birth, email, phone, password) VALUES ('Sucursal en línea', '1978-10-20', 'rosa@gmail.com', '2221639845', 'secret');
 INSERT INTO clients (name, birth, email, phone, password) VALUES ('Endy Flores', '1952-10-20', 'endy@gmail.com', '2295638417','secret');
 INSERT INTO clients (name, birth, email, phone, password) VALUES ('Rosa Paredes', '1978-10-20', 'rosa@gmail.com', '2221639845', 'secret');
 INSERT INTO clients (name, birth, email, phone, password) VALUES ('JM González Calleros', '1970-5-17', 'jmgc@gmail.com','2221458596', 'secret');
@@ -446,18 +444,3 @@ INSERT INTO statuses(name) VALUES ('Apartado en tienda');
 INSERT INTO statuses(name) VALUES ('En proceso de envío');
 INSERT INTO statuses(name) VALUES ('En tránsito');
 INSERT INTO statuses(name) VALUES ('Entregado');
-
-INSERT INTO requisitions(created_at, cart_id, client_id, delivery_id, payment_type_id, till_id) VALUES (now(), 1, 1, 1, 1, 3);
-INSERT INTO requisitions(created_at, cart_id, client_id, delivery_id, payment_type_id, till_id) VALUES (now(), 2, 2, 1, 3, 3);
-INSERT INTO requisitions(created_at, cart_id, client_id, delivery_id, payment_type_id, till_id) VALUES (now(), 3, 3, 2, 2, 3);
-
-INSERT INTO requisition_status(created_at, requisition_id, status_id) VALUES (now(), 1, 4);
-INSERT INTO requisition_status(created_at, requisition_id, status_id) VALUES (now(), 2, 4);
-INSERT INTO requisition_status(created_at, requisition_id, status_id) VALUES (now(), 3, 3);
-
-INSERT INTO cart_product(cart_id,product_id, quantity) VALUES (1, 2, 3);
-INSERT INTO cart_product(cart_id,product_id, quantity) VALUES (1, 5, 1);
-INSERT INTO cart_product(cart_id,product_id, quantity) VALUES (1, 3, 4);
-INSERT INTO cart_product(cart_id,product_id, quantity) VALUES (2, 7, 3);
-INSERT INTO cart_product(cart_id,product_id, quantity) VALUES (2, 9, 1);
-INSERT INTO cart_product(cart_id,product_id, quantity) VALUES (3, 10, 10);

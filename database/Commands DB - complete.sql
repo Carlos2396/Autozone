@@ -300,8 +300,11 @@ CREATE TABLE client_location(
  
 CREATE TABLE carts(
     id INT NOT NULL AUTO_INCREMENT,
-    client_id INT NOT NULL,
- 
+    client_id INT,
+    branch_id INT DEFAULT NULL,
+
+    FOREIGN KEY (branch_id) REFERENCES branches (id),
+    FOREIGN KEY (client_id) REFERENCES clients (id),
     PRIMARY KEY (id)
 );
  
@@ -446,4 +449,42 @@ CREATE PROCEDURE getCompletedRequisitions(IN branch_id INT)
             WHERE t.branch_id = branch_id)
     ORDER BY rs.created_at;
   END$$
+DELIMITER ;
+
+DELIMITER $$
+  CREATE FUNCTION getPurchaseValue(product_id INT, date DATETIME) RETURNS FLOAT(7,2)
+  DETERMINISTIC
+  BEGIN
+    DECLARE price FLOAT(7,2);
+    SET price = 0;
+
+    
+    SELECT if (pri.price = NULL, 0.0, pri.price)
+    INTO price
+    FROM product_provider_price ppp, prices pri, providers pro
+    WHERE ppp.product_id = product_id and ppp.provider_id = pro.id and ppp.price_id = pri.id and date >= pri.created_at
+    GROUP BY ppp.price_id, ppp.provider_id
+    ORDER BY pri.price asc
+    limit 1;
+
+    RETURN (price);
+  END
+  $$
+DELIMITER ;
+
+DELIMITER $$
+  CREATE FUNCTION getPurchaseCartTotal(cart_id INT) RETURNS FLOAT(7,2)
+  DETERMINISTIC
+  BEGIN
+    DECLARE total FLOAT(7,2);
+    SET total = 0;
+
+    SELECT sum((getPurchaseValue(p.id, 2, NOW()) * cp.quantity))
+    INTO total
+    FROM products p, carts c, cart_product cp
+    WHERE c.id = cart_id and cp.cart_id = c.id and p.id = cp.product_id;
+
+    RETURN (total);
+  END
+  $$
 DELIMITER ;

@@ -1,24 +1,14 @@
-/*
-  Este componente se encarga de proveer funciones de punto de venta.
-  Permite al usuario registrar el nombre del cliente y agregar los
-  productos que va a comprar ya sea por id, id secundario o nombre.
-  Se valida que el usuario ingrese el nombre del cliente y al menos
-  un producto en la venta, así como que se cuente con la cantidad 
-  solicitada de productos. En todo momento se muestra el total de
-  la venta.
-*/
-
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Product, Selected } from '../../interfaces/interfaces';
 
 @Component({
-  selector: 'app-cart-create',
-  templateUrl: './cart-create.component.html',
-  styleUrls: ['./cart-create.component.css']
+  selector: 'app-requisitions-create',
+  templateUrl: './requisitions-create.component.html',
+  styleUrls: ['./requisitions-create.component.css']
 })
-export class CartCreateComponent implements OnInit {
+export class RequisitionsCreateComponent implements OnInit {
   products: Product[]; // todos los productos de la sucursal
   selected: Selected[]; // productos en el carrito
   message: string; // mensaje de errores
@@ -161,7 +151,7 @@ export class CartCreateComponent implements OnInit {
           return false;
         }
         else { // si funciona la transacción
-          window.open('compras', '_SELF');
+          window.open('ventas', '_SELF');
         }
       });
     }

@@ -46,7 +46,7 @@ export class DataService {
   postPurchase(cart:Selected[]){
 
     return this.http.post(
-      this.url + 'api/purchases/create-pur.php',
+      this.url + 'api/purchases/create.php',
       JSON.stringify(cart),
     {
       method: 'POST',

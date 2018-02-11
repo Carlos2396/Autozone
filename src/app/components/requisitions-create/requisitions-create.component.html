@@ -22,7 +22,7 @@
             <form (submit)="addProduct()">
                 <div class="col-md-6">
                     <div class="form-group label-floating">
-                        <label class="control-label">Buscar producto</label>
+                        <label class="control-label">Ingresa nombre, id o ide secundario del producto</label>
                         <input list="products" class="form-control" [(ngModel)]="input" name="input">
                         <datalist id="products">
                         <option *ngFor="let product of products">{{product.name}}</option>

@@ -52,6 +52,7 @@ export class PurchasesCreateComponent implements OnInit {
       }
     }
     this.message = "Producto no encontrado.";
+    console.log(JSON.stringify(this.selected));
     return false;
   }
 
@@ -94,7 +95,7 @@ export class PurchasesCreateComponent implements OnInit {
   }
 
   // Método que realiza la peticion POST para registrar una venta
-  /*makePurchase() {
+  makePurchase() {
     this.ds.postPurchase(this.selected).subscribe((data) => {
       if (data.errors.length > 0) { // si falla la transacción
         this.message = "";
@@ -109,5 +110,5 @@ export class PurchasesCreateComponent implements OnInit {
     });
 
     return false;
-  }*/
+  }
 }
