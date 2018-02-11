@@ -1,28 +1,15 @@
 <div class="col-md-12">
   <div class="card">
     <div class="card-header" data-background-color="purple">
-      <h4 class="title">Punto de venta</h4>
+      <h4 class="title">Punto de compra</h4>
       <p class="category">Agregue todos los productos con sus respecitivas cantidades.</p>
     </div>
     <div class="card-content">
         <div class="row">
-            <form (submit)="makeSale()">
-                <div class="col-md-6">
-                    <div class="form-group label-floating">
-                        <label class="control-label">Nombre del cliente</label>
-                        <input type="text" class="form-control" [(ngModel)]="client" name="client">
-                    </div>
-                </div>
-                <div class="pull-right" style="margin-right: 50px;">
-                    <button class="btn btn-success" type="submit">Registar venta</button>
-                </div>
-            </form>
-        </div>
-        <div class="row">
             <form (submit)="addProduct()">
                 <div class="col-md-6">
                     <div class="form-group label-floating">
-                        <label class="control-label">Buscar producto</label>
+                        <label class="control-label">Ingresa nombre, id o id secundario del producto</label>
                         <input list="products" class="form-control" [(ngModel)]="input" name="input">
                         <datalist id="products">
                         <option *ngFor="let product of products">{{product.name}}</option>
@@ -55,7 +42,7 @@
                       <td>{{sel.product.secondary_id}}</td>
                       <td>{{sel.product.name}}</td>
                       <td>{{sel.product.brand}}</td>
-                      <td>{{sel.product.price | currency}}</td>
+                      <td>{{sel.product.purchase | currency}}</td>
                       <td><input class="form-control" style="width:80px;" type="number" (change)="validateQuantity(sel)" [(ngModel)]="sel.quantity" value="{{sel.quantity}}"></td>
                       <td><button class="btn btn-danger" (click)="deleteProduct(sel.product)"><i class="material-icons">delete</i></button></td>
                     </tr>
@@ -63,6 +50,9 @@
           </table>
           <h4 class="text-center" *ngIf="selected.length == 0"><br>Aún no has seleccionado productos.</h4>
           <h4 *ngIf="selected.length > 0">Costo total: {{total | currency}}</h4>
+          <div class="pull-right">
+            <button class="btn btn-success" (click)="makePurchase()" *ngIf="selected.length == 0">Comprar</button>
+        </div>
       </div>
     </div>
   </div>

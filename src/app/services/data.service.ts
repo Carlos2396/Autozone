@@ -4,6 +4,7 @@
 
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Product, Selected, Data } from '../interfaces/interfaces';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -12,7 +13,7 @@ export class DataService {
   public url:string;
 
   constructor(public http:Http) {
-    this.url = 'http://10.50.117.22/'; // url del servidor donde se encuentra la api
+    this.url = 'http://localhost/'; // url del servidor donde se encuentra la api
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
   }
@@ -41,25 +42,15 @@ export class DataService {
       headers: this.headers
     }).map(res => res.json());
   }
-}
 
-interface Product {
-  id: number,
-  secondary_id: number,
-  name: string,
-  description: string,
-  brand: string,
-  category: string,
-  quantity: number,
-  price: number
-}
+  postPurchase(cart:Selected[]){
 
-interface Selected{
-  product:Product,
-  quantity: number
-}
-
-interface Data{
-  client:string,
-  cart: Selected[]
+    return this.http.post(
+      this.url + 'api/purchases/create-pur.php',
+      JSON.stringify(cart),
+    {
+      method: 'POST',
+      headers: this.headers
+    }).map(res => res.json());
+  }
 }

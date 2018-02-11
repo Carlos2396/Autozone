@@ -4,6 +4,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { Product } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-products',
@@ -28,16 +29,4 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
-}
-
-// Interfaz que representa un producto
-interface Product{
-  id:number,
-  secondary_id:number,
-  name:string,
-  description:string,
-  brand:string,
-  category:string,
-  quantity:number,
-  price: number
 }

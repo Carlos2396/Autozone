@@ -20,7 +20,7 @@
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     try{
-        $sql = "SELECT p.id, p.secondary_id, p.name, p.description, b.name as brand, c.name as category, bp.quantity, getValue(p.id, branch.id, now()) as price
+        $sql = "SELECT p.id, p.secondary_id, p.name, p.description, b.name as brand, c.name as category, bp.quantity, getValue(p.id, branch.id, now()) as price, getPurchaseValue(p.id, now()) as purchase
         FROM products p, brands b, categories c, branches branch, branch_product bp
         WHERE p.brand_id = b.id and p.id = bp.product_id and branch.id = bp.branch_id and p.category_id = c.id and branch.id = 2";
         
@@ -38,7 +38,8 @@
                     "brand" => $brand,
                     "category" => $category,
                     "quantity" => $quantity,
-                    "price" => $price
+                    "price" => $price,
+                    "purchase" => $purchase
                 );
 
                 array_push($data["products"], $product);

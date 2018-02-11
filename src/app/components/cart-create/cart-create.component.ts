@@ -11,6 +11,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Product, Selected } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-cart-create',
@@ -167,22 +168,4 @@ export class CartCreateComponent implements OnInit {
 
     return false;
   }
-}
-
-// Interfaz que representa un producto
-interface Product {
-  id: number,
-  secondary_id: number,
-  name: string,
-  description: string,
-  brand: string,
-  category: string,
-  quantity: number,
-  price: number
-}
-
-// Interfaz que asocia un producto con una cantidad (productos en el carrito)
-interface Selected {
-  product: Product,
-  quantity: number
 }

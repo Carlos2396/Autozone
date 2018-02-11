@@ -11,11 +11,16 @@ import { DataService } from './services/data.service';
 import { RequisitionsComponent } from './components/requisitions/requisitions.component';
 import { ProductsComponent } from './components/products/products.component';
 import { CartCreateComponent } from './components/cart-create/cart-create.component';
+import { PurchasesComponent } from './components/purchases/purchases.component';
+import { PurchasesCreateComponent } from './components/purchases-create/purchases-create.component';
 
 const appRoutes:Routes = [
-  {path:'compras', component:RequisitionsComponent},
   {path:'inventario', component:ProductsComponent},
-  {path:'registro', component:CartCreateComponent}
+  {path:'ventas', component:RequisitionsComponent},
+  {path:'ventas/crear', component:CartCreateComponent},
+  {path:'compras', component:PurchasesComponent},
+  {path:'compras/crear', component:PurchasesCreateComponent},
+  {path:'', redirectTo:'inventario', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -23,7 +28,9 @@ const appRoutes:Routes = [
     AppComponent,
     RequisitionsComponent,
     ProductsComponent,
-    CartCreateComponent
+    CartCreateComponent,
+    PurchasesComponent,
+    PurchasesCreateComponent
   ],
   imports: [
     BrowserModule,

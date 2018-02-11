@@ -4,6 +4,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './../../services/data.service';
+import { Requisition } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-requisitions',
@@ -28,17 +29,4 @@ export class RequisitionsComponent implements OnInit {
       }
     });
   }
-}
-
-//Interface que representa una venta
-interface Requisition{
-  id:number,
-  total:number,
-  branch:string,
-  status:string,
-  completed:string,
-  client:string,
-  payment_type:string,
-  delivery:string,
-  created_at:string
 }

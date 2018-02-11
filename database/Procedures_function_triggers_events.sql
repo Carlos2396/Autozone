@@ -51,9 +51,34 @@ DELIMITER $$
   BEGIN
     DECLARE value FLOAT(7,2);
     
-    SET value = getPrice(product_id, branch_id, date) - getDiscount(product_id, branch_id, date);
+    IF(getDiscount(product_id, branch_id, date) != NULL) THEN
+      SET value = getDiscount(product_id, branch_id, date);
+    ELSE
+      SET value = getPrice(product_id, branch_id, date);
+    END IF;
 
     RETURN (value);
+  END
+  $$
+DELIMITER ;
+
+DELIMITER $$
+  CREATE FUNCTION getPurchaseValue(product_id INT, date DATETIME) RETURNS FLOAT(7,2)
+  DETERMINISTIC
+  BEGIN
+    DECLARE price FLOAT(7,2);
+    SET price = 0;
+
+    
+    SELECT if (pri.price = NULL, 0.0, pri.price)
+    INTO price
+    FROM product_provider_price ppp, prices pri, providers pro
+    WHERE ppp.product_id = product_id and ppp.provider_id = pro.id and ppp.price_id = pri.id and date >= pri.created_at
+    GROUP BY ppp.price_id, ppp.provider_id
+    ORDER BY pri.price asc
+    limit 1;
+
+    RETURN (price);
   END
   $$
 DELIMITER ;
@@ -67,6 +92,23 @@ DELIMITER $$
     SET total = 0;
 
     SELECT sum((getValue(p.id, 2, NOW()) * cp.quantity))
+    INTO total
+    FROM products p, carts c, cart_product cp
+    WHERE c.id = cart_id and cp.cart_id = c.id and p.id = cp.product_id;
+
+    RETURN (total);
+  END
+  $$
+DELIMITER ;
+
+DELIMITER $$
+  CREATE FUNCTION getPurchaseCartTotal(cart_id INT) RETURNS FLOAT(7,2)
+  DETERMINISTIC
+  BEGIN
+    DECLARE total FLOAT(7,2);
+    SET total = 0;
+
+    SELECT sum((getPurchaseValue(p.id, 2, NOW()) * cp.quantity))
     INTO total
     FROM products p, carts c, cart_product cp
     WHERE c.id = cart_id and cp.cart_id = c.id and p.id = cp.product_id;
