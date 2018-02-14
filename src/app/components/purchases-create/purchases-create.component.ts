@@ -78,7 +78,7 @@ export class PurchasesCreateComponent implements OnInit {
   updateTotal() {
     this.total = 0;
     for (let i = 0; i < this.selected.length; i++) {
-      this.total += this.selected[i].product.price * this.selected[i].quantity;
+      this.total += this.selected[i].product.purchase * this.selected[i].quantity;
     }
   }
 

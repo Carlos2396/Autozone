@@ -31,7 +31,7 @@
 
     // Revisar que las cantidades sean positivas
     foreach($cart as $selection){
-        if($selection->quantity < 0){
+        if($selection->quantity < 1){
             array_push( $data["errors"], "Las cantidades deben ser positivas.");
         }
     }
@@ -43,7 +43,6 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->exec('SET TRANSACTION ISOLATION LEVEL SERIALIZABLE');
             
-        
             $correct = true;
             $pdo->beginTransaction();
 
@@ -62,7 +61,7 @@
                 array_push( $data["errors"], "Sucursal no encontrada.");
             }
             
-            //Actualizamos el inventario de productos
+            //Actualizamos creamos una compra para cada producto y actualizamos el inventario
             foreach($cart as $selection){
                 $sql ="SELECT bp.quantity FROM branch_product bp WHERE bp.branch_id = ? and bp.product_id = ?;";
                 $q = $pdo->prepare($sql);
@@ -76,7 +75,18 @@
                     $q = $pdo->prepare($sql);
                     $result = $q->execute(array($quantity + $selection->quantity ,$branch_id, $selection->product->id));
                     
-                    if(!$result){
+                    if($result){
+                        $sql = "INSERT INTO purchases (created_at, branch_id, provider_id, price_id, quantity, product_id) 
+                        VALUES (now(), 2, 1, getPurchaseValueId(?, now()), ?, ?);";
+                        $q = $pdo->prepare($sql);
+                        $result = $q->execute(array($quantity + $selection->quantity ,$branch_id, $selection->product->id));
+
+                        if(!$result){
+                            $correct = false;
+                            array_push( $data["errors"], "Error al guardar la compra.");    
+                        }
+                    }
+                    else{
                         $correct = false;
                         array_push( $data["errors"], "El producto " + selection.product.name + " no se actualizó.");    
                     }

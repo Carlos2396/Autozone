@@ -15,5 +15,13 @@ export class PurchasesComponent implements OnInit {
 
   ngOnInit() {
     this.message = "";
+    
+    this.ds.getPurchases().subscribe((data) =>{
+      this.purchases = data.requisitions;
+      this.message = "";
+      for (let error of data.errors) {
+        this.message += error;
+      }
+    });
   }
 }

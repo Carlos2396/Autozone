@@ -358,8 +358,8 @@ INSERT INTO product_provider_price (product_id, provider_id, price_id) VALUES (1
 INSERT INTO product_provider_price (product_id, provider_id, price_id) VALUES (19, 3, 49);
 INSERT INTO product_provider_price (product_id, provider_id, price_id) VALUES (20, 4, 50);
 
-INSERT INTO purchases (quantity, branch_id, product_id, provider_id, price_id) VALUES (5, 1, 1, 1, 31);
-INSERT INTO purchases (quantity, branch_id, product_id, provider_id, price_id) VALUES (12, 1, 5, 3, 45);
+INSERT INTO purchases (quantity, branch_id, product_id, provider_id, price_id, created_at) VALUES (5, 1, 1, 1, 31, now());
+INSERT INTO purchases (quantity, branch_id, product_id, provider_id, price_id, created_at) VALUES (12, 1, 5, 3, 45, now());
 
 INSERT INTO clients (name, birth, email, phone, password) VALUES ('Endy Flores', '1952-10-20', 'endy@gmail.com', '2295638417','secret');
 INSERT INTO clients (name, birth, email, phone, password) VALUES ('Rosa Paredes', '1978-10-20', 'rosa@gmail.com', '2221639845', 'secret');

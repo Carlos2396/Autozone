@@ -35,8 +35,10 @@ export interface Data{
 
 export interface Purchase{
     id: number,
-    branch: string,
-    provider: string,
-    company: string,
-    cart: Selected[]
+    product_id: number
+    name: string,
+    brand: string,
+    price: number,
+    quantity: number,
+    created_at: string,
 }

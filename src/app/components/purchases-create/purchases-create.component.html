@@ -35,7 +35,6 @@
             <th>Precio p/u</th>
             <th>Cantidad</th>
             <th></th>
-            <th></th>
           </thead>
           <tbody *ngIf="selected.length > 0">
             <tr *ngFor="let sel of selected">
@@ -60,7 +59,7 @@
           <br>Aún no has seleccionado productos.</h4>
         <h4 *ngIf="selected.length > 0">Costo total: {{total | currency}}</h4>
         <div class="pull-right">
-          <button class="btn btn-success" (click)="makePurchase()">Comprar</button>
+          <button class="btn btn-success" (click)="makePurchase()">Registrar compra</button>
         </div>
       </div>
     </div>

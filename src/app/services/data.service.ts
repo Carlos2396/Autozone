@@ -18,12 +18,16 @@ export class DataService {
     this.headers.append('Content-Type', 'application/json');
   }
 
+  getProducts(){
+    return this.http.get(this.url + 'api/products/read.php').map(res => res.json());
+  }
+
   getRequisitions(){
     return this.http.get(this.url + 'api/requisitions/read.php').map(res => res.json()); 
   }
 
-  getProducts(){
-    return this.http.get(this.url + 'api/products/read.php').map(res => res.json());
+  getPurchases(){
+    return this.http.get(this.url + 'api/purchases/read.php').map(res => res.json()); 
   }
 
   getProductQuantity(product_id){

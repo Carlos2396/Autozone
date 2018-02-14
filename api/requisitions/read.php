@@ -29,7 +29,7 @@
                 SELECT t.id
                 FROM tills t
                 WHERE t.branch_id = 2)
-        ORDER BY rs.created_at;'; // realizamos la query, ejecuta un stored procedure de la base
+        ORDER BY rs.created_at DESC;'; // realizamos la query, ejecuta un stored procedure de la base
         $result = $pdo->query($sql);
         
         if($result && $result->rowCount() > 0){

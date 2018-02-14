@@ -217,6 +217,7 @@ CREATE TABLE purchases(
     price_id INT NOT NULL,
     product_id INT NOT NULL,
     provider_id INT NOT NULL,
+    created_at DATETIME NOT NULL,
     
  
     FOREIGN KEY (branch_id) REFERENCES branches (id),
@@ -467,6 +468,25 @@ DELIMITER $$
     limit 1;
 
     RETURN (price);
+  END
+  $$
+DELIMITER ;
+
+DELIMITER $$
+  CREATE FUNCTION getPurchaseValueId(product_id INT, date DATETIME) RETURNS INT
+  DETERMINISTIC
+  BEGIN
+    DECLARE id INT;
+    
+    SELECT if (pri.id = NULL, 1, pri.id)
+    INTO id
+    FROM product_provider_price ppp, prices pri, providers pro
+    WHERE ppp.product_id = product_id and ppp.provider_id = pro.id and ppp.price_id = pri.id and date >= pri.created_at
+    GROUP BY ppp.price_id, ppp.provider_id
+    ORDER BY pri.price asc
+    limit 1;
+
+    RETURN (id);
   END
   $$
 DELIMITER ;

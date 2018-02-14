@@ -1,7 +1,7 @@
 <div class="alert alert-danger col-md-12" style="margin-top:30px;" *ngIf="message">
     <span>{{message}}</span>
-  </div>
-  <div class="row">
+</div>
+<div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header" data-background-color="orange">
@@ -10,15 +10,27 @@
             </div>
             <div class="card-content table-responsive">
                 <a class="btn btn-success" routerLink="/compras/crear">Registrar una nueva compra</a>
-                <table class="table">
+                <table class="table" *ngIf="purchases">
                     <thead class="text-primary">
                         <th>#</th>
+                        <th>Producto</th>
+                        <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
                     </thead>
                     <tbody>
-                        <td>tabla</td>
+                        <td>{{purchase.id}}}</td>
+                        <td>{{purchase.product_id}}}</td>
+                        <td>{{purchase.name}}}</td>
+                        <td>{{purchase.brand}}}</td>
+                        <td>{{purchase.price}}}</td>
+                        <td>{{purchase.quantity}}}</td>
+                        <td>{{purchase.price * purchase.quantity | currency}}}</td>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-  </div>  
+</div>  
