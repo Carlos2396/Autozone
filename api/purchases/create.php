@@ -76,10 +76,10 @@
                     $result = $q->execute(array($quantity + $selection->quantity ,$branch_id, $selection->product->id));
                     
                     if($result){
-                        $sql = "INSERT INTO purchases (created_at, branch_id, provider_id, price_id, quantity, product_id) 
-                        VALUES (now(), 2, 1, getPurchaseValueId(?, now()), ?, ?);";
+                        $sql = "INSERT INTO purchases (created_at, branch_id, provider_id, price_id, quantity, product_id, done) 
+                        VALUES (now(), 2, 1, getPurchaseValueId(?, now()), ?, ?, 1);";
                         $q = $pdo->prepare($sql);
-                        $result = $q->execute(array($quantity + $selection->quantity ,$branch_id, $selection->product->id));
+                        $result = $q->execute(array($selection->product->id, $selection->quantity, $selection->product->id));
 
                         if(!$result){
                             $correct = false;

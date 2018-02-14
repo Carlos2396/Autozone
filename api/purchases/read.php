@@ -21,9 +21,9 @@
     try{
         $pdo = Database::connect(); // inicializamos conexion PDO
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = 'SELECT pur.id as id, p.id as product_id, p.name, b.name as brand, getPurchaseValue(p.id, now()) as price, pur.quantity, pur.created_at
+        $sql = 'SELECT pur.id as id, p.id as product_id, p.name, b.name as brand, getPurchaseValue(p.id, now()) as price, pur.quantity, pur.created_at, pur.done
         FROM products p, purchases pur, brands b
-        WHERE p.id = pur.id and p.brand_id = b.id and pur.branch_id = 2
+        WHERE p.id = pur.product_id and p.brand_id = b.id and pur.branch_id = 2
         ORDER BY pur.created_at DESC;'; // realizamos la query
         $result = $pdo->query($sql);
         
@@ -36,12 +36,13 @@
                     "product_id" => $product_id,
                     "name" => $name,
                     "brand" => $brand,
-                    "price" => $status,
+                    "price" => $price,
                     "quantity" => $quantity,
                     "created_at" => $created_at,
+                    "done" => $done
                 );
 
-                array_push($data["purchases"], $requisition);
+                array_push($data["purchases"], $purchase);
             }
         }
         else{

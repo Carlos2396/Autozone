@@ -17,7 +17,7 @@ export class PurchasesComponent implements OnInit {
     this.message = "";
     
     this.ds.getPurchases().subscribe((data) =>{
-      this.purchases = data.requisitions;
+      this.purchases = data.purchases;
       this.message = "";
       for (let error of data.errors) {
         this.message += error;

@@ -30,7 +30,7 @@
                             <td>{{requisition.status}}</td>
                             <td>{{requisition.payment_type}}</td>
                             <td>{{requisition.delivery}}</td>
-                            <td>{{requisition.completed}}</td>
+                            <td>{{requisition.completed | date : "fullDate"}}</td>
                             <td>{{requisition.total | currency}}</td>
                             <td><button class="btn btn-info" (click)="showDetail(requisition)">Detalles</button></td>
                         </tr>

@@ -218,6 +218,7 @@ CREATE TABLE purchases(
     product_id INT NOT NULL,
     provider_id INT NOT NULL,
     created_at DATETIME NOT NULL,
+    done TINYINT(1) NOT NULL DEFAULT 0,
     
  
     FOREIGN KEY (branch_id) REFERENCES branches (id),

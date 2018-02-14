@@ -16,18 +16,24 @@
                         <th>Producto</th>
                         <th>Nombre</th>
                         <th>Marca</th>
+                        <th>Fecha</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Total</th>
+                        <th>Estado</th>
                     </thead>
                     <tbody>
-                        <td>{{purchase.id}}}</td>
-                        <td>{{purchase.product_id}}}</td>
-                        <td>{{purchase.name}}}</td>
-                        <td>{{purchase.brand}}}</td>
-                        <td>{{purchase.price}}}</td>
-                        <td>{{purchase.quantity}}}</td>
-                        <td>{{purchase.price * purchase.quantity | currency}}}</td>
+                        <tr *ngFor="let purchase of purchases">
+                            <td>{{purchase.id}}</td>
+                            <td>{{purchase.product_id}}</td>
+                            <td>{{purchase.name}}</td>
+                            <td>{{purchase.brand}}</td>
+                            <td>{{purchase.created_at |  date : "fullDate"}}</td>
+                            <td>{{purchase.price}}</td>
+                            <td>{{purchase.quantity}}</td>
+                            <td>{{purchase.price * purchase.quantity | currency}}</td>
+                            <td><p class="text-success" *ngIf="purchase.done">Realizada</p><p class="text-success" *ngIf="!purchase.done">Pendiente</p></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

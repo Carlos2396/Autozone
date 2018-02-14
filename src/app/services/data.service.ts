@@ -4,7 +4,7 @@
 
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Product, Selected, Data } from '../interfaces/interfaces';
+import { Product, Selected, Data , Purchase} from '../interfaces/interfaces';
 import 'rxjs/add/operator/map';
 
 @Injectable()
