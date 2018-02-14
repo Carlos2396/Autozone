@@ -27,10 +27,9 @@
         }
 
         if($valid){
-            $pdo = Database::connect();
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
             try{
+                $pdo = Database::connect();
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $sql ="SELECT bp.quantity FROM branch_product bp WHERE bp.branch_id = 2 and bp.product_id = ?;";
                 $q = $pdo->prepare($sql);
                 $result = $q->execute(array($product_id));

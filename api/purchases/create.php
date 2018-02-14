@@ -38,11 +38,12 @@
 
     // Si no hay errores, iniciamos la transaccion
     if(sizeof($data["errors"]) == 0){
-        $pdo = Database::connect();
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->exec('SET TRANSACTION ISOLATION LEVEL SERIALIZABLE');
-        
         try{
+            $pdo = Database::connect();
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->exec('SET TRANSACTION ISOLATION LEVEL SERIALIZABLE');
+            
+        
             $correct = true;
             $pdo->beginTransaction();
 

@@ -1,4 +1,4 @@
- CREATE TABLE positions(
+CREATE TABLE positions(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     salary FLOAT(24) NOT NULL,
@@ -217,6 +217,7 @@ CREATE TABLE purchases(
     price_id INT NOT NULL,
     product_id INT NOT NULL,
     provider_id INT NOT NULL,
+    
  
     FOREIGN KEY (branch_id) REFERENCES branches (id),
     FOREIGN KEY (price_id) REFERENCES prices (id),
@@ -300,10 +301,8 @@ CREATE TABLE client_location(
  
 CREATE TABLE carts(
     id INT NOT NULL AUTO_INCREMENT,
-    client_id INT,
-    branch_id INT DEFAULT NULL,
+    client_id INT NOT NULL,
 
-    FOREIGN KEY (branch_id) REFERENCES branches (id),
     FOREIGN KEY (client_id) REFERENCES clients (id),
     PRIMARY KEY (id)
 );

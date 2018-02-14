@@ -148,11 +148,11 @@
 }
 
 .slider.noUi-connect {
-    background-color: #9c27b0;
+    background-color: #F68900;
 }
 
 .slider .noUi-handle {
-    border-color: #9c27b0;
+    border-color: #F68900;
 }
 
 .slider.slider-info .noUi-connect,
@@ -624,7 +624,7 @@ h2.title {
 }
 
 .text-primary {
-    color: #9c27b0;
+    color: #F68900;
 }
 
 .text-danger {
@@ -902,7 +902,7 @@ h2.title {
 
 .sidebar[data-color="purple"] .nav li.active a,
 .off-canvas-sidebar[data-color="purple"] .nav li.active a {
-    background-color: #9c27b0;
+    background-color: #F68900;
     box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
 }
 
@@ -1200,7 +1200,7 @@ fieldset[disabled] .navbar .navbar-nav>li>a.btn.btn-default.active {
 .open>.navbar .navbar-nav>li>a.btn.btn-primary.dropdown-toggle,
 .open>.navbar .navbar-nav>li>a.btn.btn-primary.dropdown-toggle:focus,
 .open>.navbar .navbar-nav>li>a.btn.btn-primary.dropdown-toggle:hover {
-    background-color: #9c27b0;
+    background-color: #F68900;
     color: #FFFFFF;
 }
 
@@ -1267,7 +1267,7 @@ fieldset[disabled] .navbar .navbar-nav>li>a.btn.btn-primary.active {
 .btn.btn-primary.btn-simple,
 .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple {
     background-color: transparent;
-    color: #9c27b0;
+    color: #F68900;
     box-shadow: none;
 }
 
@@ -1278,7 +1278,7 @@ fieldset[disabled] .navbar .navbar-nav>li>a.btn.btn-primary.active {
 .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple:focus,
 .navbar .navbar-nav>li>a.btn.btn-primary.btn-simple:active {
     background-color: transparent;
-    color: #9c27b0;
+    color: #F68900;
 }
 
 .btn.btn-info,
@@ -2317,7 +2317,7 @@ fieldset[disabled] .navbar .navbar-nav>li>a.btn.btn-rose.active {
 
 .btn-group.open>.dropdown-toggle.btn.btn-primary,
 .btn-group-vertical.open>.dropdown-toggle.btn.btn-primary {
-    background-color: #9c27b0;
+    background-color: #F68900;
 }
 
 .btn-group.open>.dropdown-toggle.btn.btn-success,
@@ -2452,7 +2452,7 @@ h6,
 }
 
 a {
-    color: #9c27b0;
+    color: #F68900;
 }
 
 a:hover,
@@ -2733,7 +2733,7 @@ output {
 }
 
 .label.label-primary {
-    background-color: #9c27b0;
+    background-color: #F68900;
 }
 
 .label.label-success {
@@ -2759,7 +2759,7 @@ output {
 .form-control,
 .form-group .form-control {
     border: 0;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#F68900, #F68900), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -2833,14 +2833,14 @@ fieldset[disabled] .form-group .form-control {
 
 .form-group.is-focused .form-control {
     outline: none;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#F68900, #F68900), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 100% 2px, 100% 1px;
     box-shadow: none;
     transition-duration: 0.3s;
 }
 
 .form-group.is-focused .form-control .material-input:after {
-    background-color: #9c27b0;
+    background-color: #F68900;
 }
 
 .form-group.is-focused.form-info .form-control {
@@ -3590,7 +3590,7 @@ fieldset[disabled] .form-group.is-focused .checkbox label {
 }
 
 .checkbox input[type=checkbox]:checked+.checkbox-material .check {
-    background: #9c27b0;
+    background: #F68900;
 }
 
 .checkbox input[type=checkbox]:checked+.checkbox-material .check:before {
@@ -3727,7 +3727,7 @@ fieldset[disabled] .form-group.is-focused .radio label {
     height: 15px;
     width: 15px;
     border-radius: 100%;
-    background-color: #9c27b0;
+    background-color: #F68900;
     transform: scale3d(0, 0, 0);
 }
 
@@ -3768,11 +3768,11 @@ fieldset[disabled] .form-group.is-focused .radio label {
 }
 
 .radio input[type=radio]:checked~.check {
-    background-color: #9c27b0;
+    background-color: #F68900;
 }
 
 .radio input[type=radio]:checked~.circle {
-    border-color: #9c27b0;
+    border-color: #F68900;
 }
 
 .radio input[type=radio]:checked~.check {
@@ -3903,7 +3903,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .togglebutton label input[type=checkbox]:checked+.toggle:after {
-    border-color: #9c27b0;
+    border-color: #F68900;
 }
 
 .togglebutton label input[type=checkbox]:checked+.toggle:active:after {
@@ -3991,8 +3991,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .pagination>.active>span,
 .pagination>.active>span:focus,
 .pagination>.active>span:hover {
-    background-color: #9c27b0;
-    border-color: #9c27b0;
+    background-color: #F68900;
+    border-color: #F68900;
     color: #FFFFFF;
     box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2);
 }
@@ -4077,7 +4077,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:focus,
 .nav-pills>li.active>a:hover {
-    background-color: #9c27b0;
+    background-color: #F68900;
     color: #FFFFFF;
     box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
 }
@@ -4121,7 +4121,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .tab-space {
     padding: 20px 0 50px 0px;
 }
-
+/*
 .modal-content {
     box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
     border-radius: 6px;
@@ -4213,7 +4213,78 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .modal-small .modal-body {
     margin-top: 20px;
+}*/
+
+/* The Modal (background) */
+.modal {
+    display: block;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+ 
 
 .navbar {
     border: 0;
@@ -4549,7 +4620,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 
 .navbar.navbar-primary {
-    background-color: #9c27b0;
+    background-color: #F68900;
     color: #ffffff;
 }
 
@@ -4575,12 +4646,12 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar.navbar-primary .dropdown-menu li>a:hover,
 .navbar.navbar-primary .dropdown-menu li>a:focus {
     color: #FFFFFF;
-    background-color: #9c27b0;
+    background-color: #F68900;
     box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
 }
 
 .navbar.navbar-primary .dropdown-menu .active>a {
-    background-color: #9c27b0;
+    background-color: #F68900;
     color: #ffffff;
     box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
 }
@@ -5042,7 +5113,7 @@ footer .btn {
 .dropdown-menu li a:hover,
 .dropdown-menu li a:focus,
 .dropdown-menu li a:active {
-    background-color: #9c27b0;
+    background-color: #F68900;
     color: #FFFFFF;
 }
 
@@ -5056,7 +5127,7 @@ footer .btn {
 .navbar.navbar-default .dropdown-menu li a:hover,
 .navbar.navbar-default .dropdown-menu li a:focus,
 .navbar.navbar-default .dropdown-menu li a:active {
-    background-color: #9c27b0;
+    background-color: #F68900;
     color: #FFFFFF;
     box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
 }
@@ -5425,7 +5496,7 @@ footer .btn {
 }
 
 .nav-tabs {
-    background: #9c27b0;
+    background: #F68900;
     border: 0;
     border-radius: 3px;
     padding: 0 15px;
@@ -5689,12 +5760,12 @@ footer .btn {
 .ct-series-d .ct-line,
 .ct-series-d .ct-bar,
 .ct-series-d .ct-slice-donut {
-    stroke: #9c27b0;
+    stroke: #F68900;
 }
 
 .ct-series-d .ct-slice-pie,
 .ct-series-d .ct-area {
-    fill: #9c27b0;
+    fill: #F68900;
 }
 
 .ct-series-e .ct-point,
@@ -6306,7 +6377,7 @@ footer .btn {
 }
 
 .ct-blue {
-    stroke: #9c27b0 !important;
+    stroke: #F68900 !important;
 }
 
 .ct-azure {
@@ -6318,7 +6389,7 @@ footer .btn {
 }
 
 .ct-orange {
-    stroke: #ff9800 !important;
+    stroke: #F68900 !important;
 }
 
 .ct-red {

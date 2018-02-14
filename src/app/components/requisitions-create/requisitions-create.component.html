@@ -1,68 +1,77 @@
 <div class="col-md-12">
   <div class="card">
-    <div class="card-header" data-background-color="purple">
+    <div class="card-header" data-background-color="orange">
       <h4 class="title">Punto de venta</h4>
       <p class="category">Agregue todos los productos con sus respecitivas cantidades.</p>
     </div>
     <div class="card-content">
-        <div class="row">
-            <form (submit)="makeSale()">
-                <div class="col-md-6">
-                    <div class="form-group label-floating">
-                        <label class="control-label">Nombre del cliente</label>
-                        <input type="text" class="form-control" [(ngModel)]="client" name="client">
-                    </div>
-                </div>
-                <div class="pull-right" style="margin-right: 50px;">
-                    <button class="btn btn-success" type="submit">Registar venta</button>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <form (submit)="addProduct()">
-                <div class="col-md-6">
-                    <div class="form-group label-floating">
-                        <label class="control-label">Ingresa nombre, id o ide secundario del producto</label>
-                        <input list="products" class="form-control" [(ngModel)]="input" name="input">
-                        <datalist id="products">
-                        <option *ngFor="let product of products">{{product.name}}</option>
-                        <option *ngFor="let product of products">{{product.id}}</option>
-                        <option *ngFor="let product of products">{{product.secondary_id}}</option>
-                        </datalist>
-                    </div>
-                </div>
-                <div class="alert alert-danger col-md-6" style="margin-top:30px;" *ngIf="message">
-                    <span>{{message}}</span>
-                </div>
-            </form>
-        </div>
+      <div class="alert alert-danger col-md-12" style="margin-top:30px;" *ngIf="message">
+        <span>{{message}}</span>
+      </div>
+      <div class="row">
+        <form>
+          <div class="col-md-6">
+            <div class="form-group label-floating">
+              <label class="control-label">Nombre del cliente</label>
+              <input type="text" class="form-control" [(ngModel)]="client" name="client">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <form (submit)="addProduct()">
+          <div class="col-md-6">
+            <div class="form-group label-floating">
+              <label class="control-label">Ingresa nombre, id o ide secundario del producto</label>
+              <input list="products" class="form-control" [(ngModel)]="input" name="input">
+              <datalist id="products">
+                <option *ngFor="let product of products">{{product.name}}</option>
+                <option *ngFor="let product of products">{{product.id}}</option>
+                <option *ngFor="let product of products">{{product.secondary_id}}</option>
+              </datalist>
+            </div>
+          </div>
+            <button class="btn btn-info" type="submit" style="margin-top: 20px;">Agregar producto</button>
+        </form>
+      </div>
 
       <div class="card-content table-responsive">
-          <table class="table">
-              <thead class="text-primary">
-                  <th>#</th>
-                  <th># secundario</th>
-                  <th>Nombre</th>
-                  <th>Marca</th>
-                  <th>Precio p/u</th>
-                  <th>Cantidad</th>
-                  <th></th>
-                  <th></th>
-              </thead>
-              <tbody *ngIf="selected.length > 0">
-                  <tr *ngFor="let sel of selected">
-                      <td>{{sel.product.id}}</td>
-                      <td>{{sel.product.secondary_id}}</td>
-                      <td>{{sel.product.name}}</td>
-                      <td>{{sel.product.brand}}</td>
-                      <td>{{sel.product.price | currency}}</td>
-                      <td><input class="form-control" style="width:80px;" type="number" (change)="validateQuantity(sel)" [(ngModel)]="sel.quantity" value="{{sel.quantity}}"></td>
-                      <td><button class="btn btn-danger" (click)="deleteProduct(sel.product)"><i class="material-icons">delete</i></button></td>
-                    </tr>
-              </tbody>
-          </table>
-          <h4 class="text-center" *ngIf="selected.length == 0"><br>Aún no has seleccionado productos.</h4>
-          <h4 *ngIf="selected.length > 0">Costo total: {{total | currency}}</h4>
+        <table class="table">
+          <thead class="text-primary">
+            <th>#</th>
+            <th># secundario</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Precio p/u</th>
+            <th>Cantidad</th>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody *ngIf="selected.length > 0">
+            <tr *ngFor="let sel of selected">
+              <td>{{sel.product.id}}</td>
+              <td>{{sel.product.secondary_id}}</td>
+              <td>{{sel.product.name}}</td>
+              <td>{{sel.product.brand}}</td>
+              <td>{{sel.product.price | currency}}</td>
+              <td>
+                <input class="form-control" style="width:80px;" type="number" (change)="validateQuantity(sel)" [(ngModel)]="sel.quantity"
+                  value="{{sel.quantity}}">
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteProduct(sel.product)">
+                  <i class="material-icons">delete</i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h4 class="text-center" *ngIf="selected.length == 0">
+          <br>Aún no has seleccionado productos.</h4>
+        <h4 *ngIf="selected.length > 0">Costo total: {{total | currency}}</h4>
+        <div class="pull-right" style="margin-right: 50px;">
+          <button class="btn btn-success" (click)="makeSale()">Registar venta</button>
+        </div>
       </div>
     </div>
   </div>

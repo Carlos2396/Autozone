@@ -24,7 +24,8 @@ export interface Requisition{
     client:string,
     payment_type:string,
     delivery:string,
-    created_at:string
+    created_at:string,
+    cart: number
 }
 
 export interface Data{

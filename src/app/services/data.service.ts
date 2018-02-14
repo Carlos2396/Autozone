@@ -30,12 +30,16 @@ export class DataService {
     return this.http.get(this.url + 'api/products/read_quantity.php?product_id=' + product_id).map(res => res.json());
   }
 
+  getCart(cart_id){
+    return this.http.get(this.url + 'api/carts/read.php?cart_id=' + cart_id).map(res => res.json());
+  }
+
   postRequisition(client:string, cart:Selected[]){
     let data:Data;
     data = {client: client, cart: cart};
 
     return this.http.post(
-      this.url + 'api/requisitions/create-req.php',
+      this.url + 'api/requisitions/create.php',
       JSON.stringify(data),
     {
       method: 'POST',

@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" data-background-color="purple">
+            <div class="card-header" data-background-color="orange">
                 <h4 class="title">Ventas</h4>
                 <p class="category">Solicitudes completadas en la sucursal en línea.</p>
             </div>
@@ -20,6 +20,7 @@
                         <th>Entrega</th>
                         <th>Fecha</th>
                         <th>Total</th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <tr *ngFor="let requisition of requisitions">
@@ -31,6 +32,7 @@
                             <td>{{requisition.delivery}}</td>
                             <td>{{requisition.completed}}</td>
                             <td>{{requisition.total | currency}}</td>
+                            <td><button class="btn btn-info" (click)="showDetail(requisition)">Detalles</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -39,3 +41,5 @@
         </div>
     </div>
 </div>
+
+<app-requisition-detail [requisition]="detail" (onClosed)="onClosed($event)"></app-requisition-detail>

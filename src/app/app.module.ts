@@ -13,6 +13,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { PurchasesComponent } from './components/purchases/purchases.component';
 import { PurchasesCreateComponent } from './components/purchases-create/purchases-create.component';
 import { RequisitionsCreateComponent } from './components/requisitions-create/requisitions-create.component';
+import { RequisitionDetailComponent } from './components/requisition-detail/requisition-detail.component';
 
 const appRoutes:Routes = [
   {path:'inventario', component:ProductsComponent},
@@ -30,7 +31,8 @@ const appRoutes:Routes = [
     ProductsComponent,
     PurchasesComponent,
     PurchasesCreateComponent,
-    RequisitionsCreateComponent
+    RequisitionsCreateComponent,
+    RequisitionDetailComponent
   ],
   imports: [
     BrowserModule,

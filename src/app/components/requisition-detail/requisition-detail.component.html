@@ -1,0 +1,66 @@
+<!-- The Modal -->
+<div id="myModal" class="modal" *ngIf="requisition">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+      <div class="card">
+          <div class="card-header" data-background-color="orange">
+              <span class="close pull right" (click)="hide()">&times;</span>
+              <h4 class="title">Venta {{requisition.id}}</h4>
+          </div>
+          <div class="card-content table-responsive">
+                <h3>General</h3>
+              <table class="table">
+                  <thead class="text-primary">
+                      <th>#</th>
+                      <th>Cliente</th>
+                      <th>Sucursal</th>
+                      <th>Estado</th>
+                      <th>Tipo de pago</th>
+                      <th>Entrega</th>
+                      <th>Fecha</th>
+                      <th>Total</th>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>{{requisition.id}}</td>
+                          <td>{{requisition.client}}</td>
+                          <td>{{requisition.branch}}</td>
+                          <td>{{requisition.status}}</td>
+                          <td>{{requisition.payment_type}}</td>
+                          <td>{{requisition.delivery}}</td>
+                          <td>{{requisition.completed}}</td>
+                          <td>{{requisition.total | currency}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+              <h3>Productos</h3>
+              <table class="table">
+                <thead class="text-primary">
+                    <th>#</th>
+                    <th># secundario</th>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let selected of cart">
+                        <td>{{selected.product.id}}</td>
+                        <td>{{selected.product.secondary_id}}</td>
+                        <td>{{selected.product.name}}</td>
+                        <td>{{selected.product.brand}}</td>
+                        <td>{{selected.product.category}}</td>
+                        <td>{{selected.product.price}}</td>
+                        <td>{{selected.quantity}}</td>
+                        <td>{{selected.quantity*selected.product.price | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+
+</div>
