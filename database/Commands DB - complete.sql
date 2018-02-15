@@ -169,6 +169,7 @@ CREATE TABLE specifications(
 
 CREATE TABLE branch_product(
     quantity INT NOT NULL,
+    restock INT NOT NULL,
     branch_id INT NOT NULL,
     product_id INT NOT NULL,
  
@@ -367,6 +368,14 @@ CREATE TABLE requisition_status(
     PRIMARY KEY (requisition_id, status_id)
 );
 
+CREATE TABLE salesPerHour(
+    id INT NOT NULL AUTO_INCREMENT,
+    total FLOAT(7,2) NOT NULL,
+    created_at DATETIME NOT NULL,
+
+    PRIMARY KEY(id)
+);
+
 DELIMITER $$
   CREATE FUNCTION getPrice(product_id INT, branch_id INT, date DATETIME) RETURNS FLOAT(7,2)
   DETERMINISTIC
@@ -507,4 +516,62 @@ DELIMITER $$
     RETURN (total);
   END
   $$
+DELIMITER ;
+
+DELIMITER $$
+    CREATE FUNCTION getLastHourValue() RETURNS FLOAT(7,2)
+    DETERMINISTIC
+    BEGIN
+        DECLARE total FLOAT(7,2);
+        SET total = 0;
+
+        SELECT SUM(getCartTotal(r.cart_id))
+        INTO total
+        FROM requisitions r
+        WHERE r.created_at >= (NOW() - INTERVAL 1 HOUR);
+
+        RETURN (total);
+    END $$
+DELIMITER ;
+
+SET GLOBAL event_scheduler = ON;
+
+CREATE EVENT IF NOT EXISTS hourlyValues
+ON SCHEDULE EVERY 1 HOUR
+DO
+    INSERT INTO salesPerHour(total, created_at)
+    VALUES(getLastHourValue(), NOW());
+
+
+CREATE EVENT IF NOT EXISTS activateHourlyValues
+ON SCHEDULE 
+    EVERY 1 DAY
+    STARTS '2018-02-14 05:00:00'
+DO
+    ALTER EVENT hourlyValues
+        ENABLE;
+
+CREATE EVENT IF NOT EXISTS deactivateHourlyValues
+ON SCHEDULE 
+    EVERY 1 DAY
+    STARTS '2018-02-15 23:00:00'
+DO
+    ALTER EVENT hourlyValues
+        DISABLE;
+
+DELIMITER $$
+CREATE TRIGGER after_branch_product_update
+AFTER UPDATE ON branch_product
+FOR EACH ROW
+BEGIN
+    IF NEW.quantity = 0 THEN
+        INSERT INTO purchases
+        SET quantity = OLD.restock,
+        branch_id = OLD.branch_id,
+        price_id = getPurchaseValueId(OLD.product_id, NOW()),
+        product_id = OLD.product_id,
+        provider_id = 1,
+        created_at = NOW();
+    END IF;
+END $$
 DELIMITER ;
