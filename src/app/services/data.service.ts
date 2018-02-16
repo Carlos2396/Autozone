@@ -13,9 +13,10 @@ export class DataService {
   public url:string;
 
   constructor(public http:Http) {
-    this.url = 'http://localhost/usuario1/Autozone/'; // url del servidor donde se encuentra la api
+    this.url = 'http://10.50.67.83/usuario1/Autozone/'; // url del servidor donde se encuentra la api
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
+    this.headers.append('Access-Control-Allow-Origin', '*');
   }
 
   getProducts(){
