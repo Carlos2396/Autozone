@@ -4,7 +4,7 @@
 
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Product, Selected, Data , Purchase} from '../interfaces/interfaces';
+import { Product, Selected, Data , Purchase, SalePerHour} from '../interfaces/interfaces';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -36,6 +36,10 @@ export class DataService {
 
   getCart(cart_id){
     return this.http.get(this.url + 'api/carts/read.php?cart_id=' + cart_id).map(res => res.json());
+  }
+
+  getSalesPerHour(){
+    return this.http.get(this.url + 'api/sales/read.php').map(res => res.json());
   }
 
   postRequisition(client:string, cart:Selected[]){

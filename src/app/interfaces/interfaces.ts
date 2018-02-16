@@ -43,3 +43,9 @@ export interface Purchase{
     created_at: string,
     done: boolean
 }
+
+export interface SalePerHour{
+    id: number,
+    total: number,
+    created_at: string
+}

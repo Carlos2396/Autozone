@@ -1,0 +1,28 @@
+<div class="alert alert-danger col-md-12" style="margin-top:30px;" *ngIf="message">
+  <span>{{message}}</span>
+</div>
+<div class="row">
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header" data-background-color="orange">
+            <h4 class="title">Ventas por hora</h4>
+            <p class="category">Todas las ventas por hora del día de hoy</p>
+        </div>
+        <div class="card-content table-responsive">
+            <table class="table">
+                <thead class="text-primary">
+                    <th>#</th>
+                    <th>Total</th>
+                    <th>Fecha</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let salePerHour of salesPerHour">
+                        <td>{{salePerHour.id}}</td>
+                        <td>{{salePerHour.total}}</td>
+                        <td>{{salePerHour.created_at | date:"fulldate"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
