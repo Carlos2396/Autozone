@@ -1,0 +1,35 @@
+<div class="alert alert-danger col-md-12" style="margin-top:30px;" *ngIf="message">
+  <span>{{message}}</span>
+</div>
+  <div class="row">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-header" data-background-color="orange">
+              <h4 class="title">Ventas por día</h4>
+              <p class="category">Todas las ventas por día</p>
+          </div>
+          <div class="card-content table-responsive">
+              <form (submit)="searchSales()">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">Ingresa el dia que deseas buscar</label>
+                    <input type="date" class="form-control" [(ngModel)]="date" name="date">
+                  </div>
+                </div>
+                <button class="btn btn-info" style="margin-top: 50px;">Buscar</button>
+              </form>
+              <table class="table" *ngIf="mount">
+                  <thead class="text-primary">
+                      <th>Fecha</th>
+                      <th>Total</th>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>{{date}}</td>
+                          <td>{{mount | currency}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>

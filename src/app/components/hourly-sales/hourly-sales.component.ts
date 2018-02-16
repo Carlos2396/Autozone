@@ -15,7 +15,7 @@ export class HourlySalesComponent implements OnInit {
 
   ngOnInit() {
     // Peticion GET que obtiene todos los productos de una sucursal
-    this.ds.getProducts().subscribe((data)=>{
+    this.ds.getSalesPerHour().subscribe((data)=>{
       this.salesPerHour = data.salesPerHour;
 
       this.message = "";
