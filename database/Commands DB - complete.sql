@@ -1128,25 +1128,30 @@ DELIMITER ;
 
 SET GLOBAL event_scheduler = ON;
 
+DELIMITER $$
 CREATE EVENT IF NOT EXISTS hourlyValues
 ON SCHEDULE EVERY 1 HOUR
+    START '2018-02-16 15:00:00'
 DO
-    INSERT INTO salesPerHour(total, created_at)
-    VALUES(getLastHourValue(), NOW());
-
+    BEGIN
+        START TRANSACTION;
+        INSERT INTO salesPerHour(total, created_at) VALUES (getLastHourValue(), NOW());
+        COMMIT;
+    END $$
+DELIMITER ;
 
 CREATE EVENT IF NOT EXISTS activateHourlyValues
 ON SCHEDULE 
     EVERY 1 DAY
-    STARTS '2018-02-14 05:00:00'
+    STARTS '2018-02-17 5:00:00'
 DO
     ALTER EVENT hourlyValues
         ENABLE;
 
 CREATE EVENT IF NOT EXISTS deactivateHourlyValues
 ON SCHEDULE 
-    EVERY 1 DAY
-    STARTS '2018-02-15 23:00:00'
+    EVERY 10 MINUTE
+    STARTS '2018-02-16 23:01:00'
 DO
     ALTER EVENT hourlyValues
         DISABLE;

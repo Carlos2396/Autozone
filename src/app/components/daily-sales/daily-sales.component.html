@@ -1,35 +1,52 @@
 <div class="alert alert-danger col-md-12" style="margin-top:30px;" *ngIf="message">
-  <span>{{message}}</span>
+    <span>{{message}}</span>
 </div>
-  <div class="row">
-  <div class="col-md-12">
-      <div class="card">
-          <div class="card-header" data-background-color="orange">
-              <h4 class="title">Ventas por día</h4>
-              <p class="category">Todas las ventas por día</p>
-          </div>
-          <div class="card-content table-responsive">
-              <form (submit)="searchSales()">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="control-label">Ingresa el dia que deseas buscar</label>
-                    <input type="date" class="form-control" [(ngModel)]="date" name="date">
-                  </div>
-                </div>
-                <button class="btn btn-info" style="margin-top: 50px;">Buscar</button>
-              </form>
-              <table class="table" *ngIf="mount">
-                  <thead class="text-primary">
-                      <th>Fecha</th>
-                      <th>Total</th>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>{{date}}</td>
-                          <td>{{mount | currency}}</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header" data-background-color="orange">
+                <h4 class="title">Ventas</h4>
+                <p class="category">Ventas concretadas en un cierto día.</p>
+            </div>
+            <div class="card-content table-responsive">
+                <form (submit)="searchSales()">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="control-label">Ingresa el dia que deseas buscar</label>
+                        <input type="date" class="form-control" [(ngModel)]="date" name="date">
+                      </div>
+                    </div>
+                    <button class="btn btn-info" style="margin-top: 50px;">Buscar</button>
+                  </form>
+                <table class="table" *ngIf="requisitions">
+                    <thead class="text-primary">
+                        <th>#</th>
+                        <th>Cliente</th>
+                        <th>Sucursal</th>
+                        <th>Estado</th>
+                        <th>Tipo de pago</th>
+                        <th>Entrega</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let requisition of requisitions">
+                            <td>{{requisition.id}}</td>
+                            <td>{{requisition.client}}</td>
+                            <td>{{requisition.branch}}</td>
+                            <td>{{requisition.status}}</td>
+                            <td>{{requisition.payment_type}}</td>
+                            <td>{{requisition.delivery}}</td>
+                            <td>{{requisition.completed}}</td>
+                            <td>{{requisition.total | currency}}</td>
+                            <td><button class="btn btn-info" (click)="showDetail(requisition)">Detalles</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-requisition-detail [requisition]="detail" (onClosed)="onClosed($event)"></app-requisition-detail>

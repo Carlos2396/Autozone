@@ -39,7 +39,7 @@ export class DataService {
   }
 
   getDaySales(date){
-    return this.http.get(this.url + 'api/sales/read_day.php?date=' + date.toString()).map(res => res.json());
+    return this.http.get(this.url + 'api/requisitions/read_day.php?date=' + date.toString()).map(res => res.json());
   }
 
   getSalesPerHour(){

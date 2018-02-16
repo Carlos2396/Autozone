@@ -38,6 +38,5 @@ export class RequisitionsComponent implements OnInit {
 
   onClosed(closed:boolean){
     this.detail = null;
-    console.log(this.detail);
   }
 }

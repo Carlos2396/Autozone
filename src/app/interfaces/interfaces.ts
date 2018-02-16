@@ -20,11 +20,11 @@ export interface Requisition{
     total:number,
     branch:string,
     status:string,
-    completed:string,
+    completed:Date,
     client:string,
     payment_type:string,
     delivery:string,
-    created_at:string,
+    created_at: Date,
     cart: number
 }
 

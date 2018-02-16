@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { Requisition } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-daily-sales',
@@ -7,22 +8,22 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./daily-sales.component.css']
 })
 export class DailySalesComponent implements OnInit {
-  date: string;
-  mount: number;
-  message: string;
+  date: Date;
+  message:string;
+  requisitions:Requisition[]; // todas las ventas de la sucursal
+  detail:Requisition;
 
   constructor(private ds: DataService) { }
 
   ngOnInit() {
-    this.mount = null;
+    this.detail = null;
     this.message = "";
+    this.requisitions = null;
   }
 
   searchSales(){
-    //console.log(this.date.toString());
-    this.ds.getDaySales(this.date).subscribe((data)=>{
-      this.mount = data.mount;
-      console.log(data);
+    this.ds.getDaySales(this.date).subscribe((data) =>{
+      this.requisitions = data.requisitions;
       this.message = "";
       for (let error of data.errors) {
         this.message += error;
@@ -31,4 +32,11 @@ export class DailySalesComponent implements OnInit {
     return false;
   }
 
+  showDetail(requisition:Requisition){
+    this.detail = requisition;
+  }
+
+  onClosed(closed:boolean){
+    this.detail = null;
+  }
 }
