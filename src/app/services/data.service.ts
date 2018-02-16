@@ -13,7 +13,7 @@ export class DataService {
   public url:string;
 
   constructor(public http:Http) {
-    this.url = 'http://localhost/'; // url del servidor donde se encuentra la api
+    this.url = 'http://localhost/usuario1/'; // url del servidor donde se encuentra la api
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
   }
