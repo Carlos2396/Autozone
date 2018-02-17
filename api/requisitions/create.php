@@ -7,10 +7,9 @@
     */
 
     // headers necesarios para recibir peticiones externas y recibir un cuerpo en json
-    header('Origin: *');
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: POST");
-    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Allow-Headers: Content-Type, access-control-allow-origin");
     header("Content-Type: application/json; charset=UTF-8");
     header("Accept: application/json;");
 
