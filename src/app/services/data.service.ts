@@ -13,7 +13,7 @@ export class DataService {
   public url:string;
 
   constructor(public http:Http) {
-    this.url = 'http://10.50.67.83/usuario1/Autozone/'; // url del servidor donde se encuentra la api
+    this.url = 'http://localhost/'; // url del servidor donde se encuentra la api
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Access-Control-Allow-Origin', '*');
@@ -29,6 +29,10 @@ export class DataService {
 
   getPurchases(){
     return this.http.get(this.url + 'api/purchases/read.php').map(res => res.json()); 
+  }
+
+  getCategories(){
+    return this.http.get(this.url + "api/categories/read.php").map(res => res.json());
   }
 
   getProductQuantity(product_id){

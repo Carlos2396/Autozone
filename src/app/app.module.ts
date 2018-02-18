@@ -17,10 +17,12 @@ import { RequisitionDetailComponent } from './components/requisition-detail/requ
 import { HourlySalesComponent } from './components/hourly-sales/hourly-sales.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { DailySalesComponent } from './components/daily-sales/daily-sales.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 const appRoutes:Routes = [
   {path: 'inicio', component: LandingComponent},
   {path:'inventario', component:ProductsComponent},
+  {path:'categorias', component:CategoriesComponent},
   {path:'ventas', component:RequisitionsComponent},
   {path:'ventas/crear', component:RequisitionsCreateComponent},
   {path:'compras', component:PurchasesComponent},
@@ -41,7 +43,8 @@ const appRoutes:Routes = [
     RequisitionDetailComponent,
     HourlySalesComponent,
     LandingComponent,
-    DailySalesComponent
+    DailySalesComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

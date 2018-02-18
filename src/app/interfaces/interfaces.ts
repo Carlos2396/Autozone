@@ -49,3 +49,11 @@ export interface SalePerHour{
     total: number,
     created_at: string
 }
+
+export interface Category{
+    id: number,
+    name: string,
+    department: string,
+    subdepartment: string,
+    products: number
+}

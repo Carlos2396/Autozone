@@ -1,0 +1,30 @@
+<div class="alert alert-danger col-md-12" style="margin-top:30px;" *ngIf="message">
+  <span>{{message}}</span>
+</div>
+<div class="row">
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header" data-background-color="orange">
+            <h4 class="title">Categorías</h4>
+            <p class="category">Todos las categorias con sus departamentos y número de productos.</p>
+        </div>
+        <div class="card-content table-responsive">
+            <table class="table">
+                <thead class="text-primary">
+                    <th>Nombre</th>
+                    <th>Departamento</th>
+                    <th>Subdepartamento</th>
+                    <th>Productos</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of categories">
+                        <td>{{category.name}}</td>
+                        <td>{{category.department}}</td>
+                        <td>{{category.subdepartment}}</td>
+                        <td>{{category.products}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
