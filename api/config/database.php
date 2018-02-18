@@ -5,15 +5,15 @@
 	*/
 	class Database {
 		// Información necesaria para conectarse a la base de datos
-		/*private static $dbName 			= 'usuario1' ; 
+		private static $dbName 			= 'usuario1' ; 
 		private static $dbHost 			= 'localhost';
 		private static $dbUsername 		= 'usuario1';
-		private static $dbUserPassword 	= 'lU2CUQvJEd';*/
+		private static $dbUserPassword 	= 'lU2CUQvJEd';
 
-		private static $dbName 			= 'autozone' ; 
+		/*private static $dbName 			= 'autozone' ; 
 		private static $dbHost 			= 'localhost';
 		private static $dbUsername 		= 'admin';
-		private static $dbUserPassword 	= 'admin';
+		private static $dbUserPassword 	= 'admin';*/
 		
 		private static $cont  = null;
 		

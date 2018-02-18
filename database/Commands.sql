@@ -98,7 +98,7 @@ DELIMITER $$
     DECLARE total FLOAT(7,2);
     SET total = 0;
 
-    SELECT sum((getValue(p.id, 2, NOW()) * cp.quantity))
+    SELECT SUM((getValue(p.id, 2, NOW()) * cp.quantity))
     INTO total
     FROM products p, carts c, cart_product cp
     WHERE c.id = cart_id and cp.cart_id = c.id and p.id = cp.product_id;
@@ -150,18 +150,21 @@ DELIMITER $$
   $$
 DELIMITER ;
 
--- Obtiene la suma de los montos de las ventas en la última hora
 DELIMITER $$
     CREATE FUNCTION getLastHourValue() RETURNS FLOAT(7,2)
     DETERMINISTIC
     BEGIN
         DECLARE total FLOAT(7,2);
-        SET total = 0;
+        SET total = 0.0;
 
         SELECT SUM(getCartTotal(r.cart_id))
         INTO total
         FROM requisitions r
         WHERE r.created_at >= (NOW() - INTERVAL 1 HOUR);
+
+        IF total is NULL THEN
+          SET total = 0.0;
+        END IF;
 
         RETURN (total);
     END $$
@@ -198,8 +201,8 @@ SET GLOBAL event_scheduler = ON;
 -- Evento que inserta una nueva fila en la tabla ventas por hora cada hora
 DELIMITER $$
 CREATE EVENT IF NOT EXISTS hourlyValues
-ON SCHEDULE EVERY 1 HOUR
-    STARTS '2018-02-17 14:00:00'
+ON SCHEDULE EVERY 1 MINUTE
+    STARTS '2018-02-18 11:09:00'
 DO
     BEGIN
         START TRANSACTION;
@@ -210,18 +213,28 @@ DELIMITER ;
 
 -- Evento que activa houlyValues cada día a las 04:59
 CREATE EVENT IF NOT EXISTS activateHourlyValues
-ON SCHEDULE
-    EVERY 1 DAY
-    STARTS '2018-02-18 04:59:00'
+ON SCHEDULE EVERY 1 DAY
+    STARTS '2018-02-19 04:55:00'
 DO
-    ALTER EVENT hourlyValues
-        ENABLE;
+    ALTER EVENT hourlyValues ENABLE;
 
 -- Evento que desactiva houlyValues cada día a las 23:01
 CREATE EVENT IF NOT EXISTS deactivateHourlyValues
-ON SCHEDULE 
-    EVERY 1 DAY
-    STARTS '2018-02-17 23:01:00'
+ON SCHEDULE EVERY 1 DAY
+    STARTS '2018-02-18 23:05:00'
 DO
-    ALTER EVENT hourlyValues
-        DISABLE;
+    ALTER EVENT hourlyValues DISABLE;
+
+-- Evento que activa houlyValues cada día a las 04:59
+CREATE EVENT IF NOT EXISTS activateHourlyValues
+ON SCHEDULE EVERY 5 MINUTE
+    STARTS '2018-02-18 11:19:30'
+DO
+    ALTER EVENT hourlyValues ENABLE;
+
+-- Evento que desactiva houlyValues cada día a las 23:01
+CREATE EVENT IF NOT EXISTS deactivateHourlyValues
+ON SCHEDULE EVERY 5 MINUTE
+    STARTS '2018-02-18 11:17:30'
+DO
+    ALTER EVENT hourlyValues DISABLE;

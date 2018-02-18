@@ -107,9 +107,7 @@
             Database::disconnect();
         }catch(PDOException $e){
             array_push( $data["errors"], $e->getMessage());
-            if($pdo->inTransaction()){
-                $pdo->rollBack();
-            }
+            $pdo->rollBack();
         }
     }
 

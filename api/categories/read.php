@@ -1,8 +1,7 @@
 <?php
     /*
-        Este archivo se encarga de obtener el inventario de productos de una sucursal.
-
-        Retorna un json todos los productos de una sucursal.
+        Este archivo se encarga de obtener las categorias con departamento, subdepartamento y productos.
+        Retorna un json todas las categorias.
     */
 
     // headers necesarios para recibir peticiones externas
@@ -20,7 +19,6 @@
         $pdo = Database::connect();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "call getCategories()";
-        
         $result = $pdo->query($sql);
 
         if($result && $result->rowCount() > 0){
