@@ -108,7 +108,7 @@ CREATE TABLE `branch_product` (
 
 LOCK TABLES `branch_product` WRITE;
 /*!40000 ALTER TABLE `branch_product` DISABLE KEYS */;
-INSERT INTO `branch_product` VALUES (10,10,1,1),(10,10,1,2),(10,10,1,3),(10,10,1,4),(10,10,1,5),(10,10,1,6),(10,10,1,7),(10,10,1,8),(10,10,1,9),(10,10,1,10),(10,10,1,11),(10,10,1,12),(10,10,1,13),(10,10,1,14),(10,10,1,15),(10,10,1,16),(10,10,1,17),(10,10,1,18),(10,10,1,19),(10,10,1,20),(100,100,2,1),(100,100,2,2),(100,100,2,3),(100,100,2,4),(100,100,2,5),(100,100,2,6),(100,100,2,7),(100,100,2,8),(100,100,2,9),(100,100,2,10),(100,100,2,11),(100,100,2,12),(100,100,2,13),(100,100,2,14),(100,100,2,15),(100,100,2,16),(100,100,2,17),(100,100,2,18),(100,100,2,19),(100,100,2,20);
+INSERT INTO `branch_product` VALUES (10,10,1,1),(10,10,1,2),(10,10,1,3),(10,10,1,4),(10,10,1,5),(10,10,1,6),(10,10,1,7),(10,10,1,8),(10,10,1,9),(10,10,1,10),(10,10,1,11),(10,10,1,12),(10,10,1,13),(10,10,1,14),(10,10,1,15),(10,10,1,16),(10,10,1,17),(10,10,1,18),(10,10,1,19),(10,10,1,20),(100,100,2,1),(50,100,2,2),(100,100,2,3),(100,100,2,4),(100,100,2,5),(100,100,2,6),(100,100,2,7),(100,100,2,8),(100,100,2,9),(100,100,2,10),(100,100,2,11),(100,100,2,12),(100,100,2,13),(100,100,2,14),(100,100,2,15),(100,100,2,16),(100,100,2,17),(100,100,2,18),(100,100,2,19),(100,100,2,20);
 /*!40000 ALTER TABLE `branch_product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -234,6 +234,7 @@ CREATE TABLE `cart_product` (
 
 LOCK TABLES `cart_product` WRITE;
 /*!40000 ALTER TABLE `cart_product` DISABLE KEYS */;
+INSERT INTO `cart_product` VALUES (4,1,100),(5,2,50),(6,1,50);
 /*!40000 ALTER TABLE `cart_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +251,7 @@ CREATE TABLE `carts` (
   PRIMARY KEY (`id`),
   KEY `client_id` (`client_id`),
   CONSTRAINT `carts_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +260,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,1),(2,2),(3,3);
+INSERT INTO `carts` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6);
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,7 +360,7 @@ CREATE TABLE `clients` (
   `phone` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -368,7 +369,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Endy Flores','1952-10-20','endy@gmail.com','2295638417','secret'),(2,'Rosa Paredes','1978-10-20','rosa@gmail.com','2221639845','secret'),(3,'JM González Calleros','1970-05-17','jmgc@gmail.com','2221458596','secret');
+INSERT INTO `clients` VALUES (1,'Endy Flores','1952-10-20','endy@gmail.com','2295638417','secret'),(2,'Rosa Paredes','1978-10-20','rosa@gmail.com','2221639845','secret'),(3,'JM González Calleros','1970-05-17','jmgc@gmail.com','2221458596','secret'),(4,'Carlos','1985-11-09','test@test.com','2221548621','secret'),(5,'Moni','1985-11-09','test@test.com','2221548621','secret'),(6,'Compu','1985-11-09','test@test.com','2221548621','secret');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -886,7 +887,7 @@ CREATE TABLE `purchases` (
   CONSTRAINT `purchases_ibfk_2` FOREIGN KEY (`price_id`) REFERENCES `prices` (`id`),
   CONSTRAINT `purchases_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   CONSTRAINT `purchases_ibfk_4` FOREIGN KEY (`provider_id`) REFERENCES `providers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -895,7 +896,7 @@ CREATE TABLE `purchases` (
 
 LOCK TABLES `purchases` WRITE;
 /*!40000 ALTER TABLE `purchases` DISABLE KEYS */;
-INSERT INTO `purchases` VALUES (1,5,1,31,1,1,'2018-02-17 19:24:49',0),(2,12,1,45,5,3,'2018-02-17 19:24:49',0);
+INSERT INTO `purchases` VALUES (1,5,1,31,1,1,'2018-02-17 19:24:49',0),(2,12,1,45,5,3,'2018-02-17 19:24:49',0),(3,100,2,31,1,1,'2018-02-18 12:49:12',0),(4,50,2,31,1,1,'2018-02-18 12:49:27',1),(5,100,2,31,1,1,'2018-02-18 22:06:20',0),(7,100,2,31,1,1,'2018-02-18 22:07:11',1);
 /*!40000 ALTER TABLE `purchases` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -923,6 +924,7 @@ CREATE TABLE `requisition_status` (
 
 LOCK TABLES `requisition_status` WRITE;
 /*!40000 ALTER TABLE `requisition_status` DISABLE KEYS */;
+INSERT INTO `requisition_status` VALUES ('2018-02-18 12:49:12',1,4),('2018-02-18 12:52:50',2,4),('2018-02-18 22:06:20',3,4);
 /*!40000 ALTER TABLE `requisition_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -952,7 +954,7 @@ CREATE TABLE `requisitions` (
   CONSTRAINT `requisitions_ibfk_3` FOREIGN KEY (`delivery_id`) REFERENCES `deliveries` (`id`),
   CONSTRAINT `requisitions_ibfk_4` FOREIGN KEY (`payment_type_id`) REFERENCES `payment_types` (`id`),
   CONSTRAINT `requisitions_ibfk_5` FOREIGN KEY (`till_id`) REFERENCES `tills` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -961,6 +963,7 @@ CREATE TABLE `requisitions` (
 
 LOCK TABLES `requisitions` WRITE;
 /*!40000 ALTER TABLE `requisitions` DISABLE KEYS */;
+INSERT INTO `requisitions` VALUES (1,'2018-02-18 12:49:12',4,4,1,1,3),(2,'2018-02-18 12:52:50',5,5,1,1,3),(3,'2018-02-18 22:06:20',6,6,1,1,3);
 /*!40000 ALTER TABLE `requisitions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1180,7 +1183,7 @@ DELIMITER ;;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
 /*!50003 SET time_zone             = 'SYSTEM' */ ;;
-/*!50106 CREATE*/ /*!50117 DEFINER=`admin`@`localhost`*/ /*!50106 EVENT `hourlyValues` ON SCHEDULE EVERY 1 HOUR STARTS '2018-02-17 14:00:00' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+/*!50106 CREATE*/ /*!50117 DEFINER=`admin`@`localhost`*/ /*!50106 EVENT `hourlyValues` ON SCHEDULE EVERY 1 HOUR STARTS '2018-02-17 14:00:00' ON COMPLETION NOT PRESERVE DISABLE DO BEGIN
 
         START TRANSACTION;
 
@@ -1333,25 +1336,19 @@ DELIMITER ;;
 CREATE DEFINER=`admin`@`localhost` FUNCTION `getLastHourValue`() RETURNS float(7,2)
     DETERMINISTIC
 BEGIN
-
         DECLARE total FLOAT(7,2);
-
-        SET total = 0;
-
-
+        SET total = 0.0;
 
         SELECT SUM(getCartTotal(r.cart_id))
-
         INTO total
-
         FROM requisitions r
-
         WHERE r.created_at >= (NOW() - INTERVAL 1 HOUR);
 
-
+        IF total is NULL THEN
+          SET total = 0.0;
+        END IF;
 
         RETURN (total);
-
     END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1634,4 +1631,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-17 19:29:32
+-- Dump completed on 2018-02-18 22:25:50

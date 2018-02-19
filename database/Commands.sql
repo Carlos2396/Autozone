@@ -201,8 +201,8 @@ SET GLOBAL event_scheduler = ON;
 -- Evento que inserta una nueva fila en la tabla ventas por hora cada hora
 DELIMITER $$
 CREATE EVENT IF NOT EXISTS hourlyValues
-ON SCHEDULE EVERY 1 MINUTE
-    STARTS '2018-02-18 11:09:00'
+ON SCHEDULE EVERY 1 HOUR
+    STARTS '2018-02-18 13:00:00'
 DO
     BEGIN
         START TRANSACTION;
@@ -222,19 +222,5 @@ DO
 CREATE EVENT IF NOT EXISTS deactivateHourlyValues
 ON SCHEDULE EVERY 1 DAY
     STARTS '2018-02-18 23:05:00'
-DO
-    ALTER EVENT hourlyValues DISABLE;
-
--- Evento que activa houlyValues cada día a las 04:59
-CREATE EVENT IF NOT EXISTS activateHourlyValues
-ON SCHEDULE EVERY 5 MINUTE
-    STARTS '2018-02-18 11:19:30'
-DO
-    ALTER EVENT hourlyValues ENABLE;
-
--- Evento que desactiva houlyValues cada día a las 23:01
-CREATE EVENT IF NOT EXISTS deactivateHourlyValues
-ON SCHEDULE EVERY 5 MINUTE
-    STARTS '2018-02-18 11:17:30'
 DO
     ALTER EVENT hourlyValues DISABLE;
